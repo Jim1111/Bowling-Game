@@ -1,0 +1,16 @@
+body {
+margin: 2;
+}
+
+.canvas-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#canvas1 {
+  display: block;
+  background: black;
+  border: 1px solid silver;
+  box-shadow: 5px 10px silver;
+}
