@@ -32,6 +32,36 @@ bowlLane.src = "images/bowling-lane.png";
 const ball = new Image();
 ball.src = "images/ball.png";
 
+const pin1 = new Image();
+pin1.src = "images/pin.png";
+
+const pin2 = new Image();
+pin2.src = "images/pin.png";
+
+const pin3 = new Image();
+pin3.src = "images/pin.png";
+
+const pin4 = new Image();
+pin4.src = "images/pin.png";
+
+const pin5 = new Image();
+pin5.src = "images/pin.png";
+
+const pin6 = new Image();
+pin6.src = "images/pin.png";
+
+const pin7 = new Image();
+pin7.src = "images/pin.png";
+
+const pin8 = new Image();
+pin8.src = "images/pin.png";
+
+const pin9 = new Image();
+pin9.src = "images/pin.png";
+
+const pin10 = new Image();
+pin10.src = "images/pin.png";
+
 
 
 function SplashEnd(e) {
@@ -90,7 +120,23 @@ function Ins() {
 
 function Game() {
     ctx.drawImage(bowlLane, 0, 0, 715, 750);
+
     ctx.drawImage(ball, 330, 640, 85, 85);
+
+    ctx.drawImage(pin1, 290, 120, 40, 120);
+    ctx.drawImage(pin2, 330, 120, 40, 120);
+    ctx.drawImage(pin3, 370, 120, 40, 120);
+    ctx.drawImage(pin4, 410, 120, 40, 120);
+
+    ctx.drawImage(pin5, 310, 140, 40, 120);
+    ctx.drawImage(pin6, 350, 140, 40, 120);
+    ctx.drawImage(pin7, 390, 140, 40, 120);
+
+    ctx.drawImage(pin8, 330, 160, 40, 120);
+    ctx.drawImage(pin9, 370, 160, 40, 120);
+
+    ctx.drawImage(pin10, 350, 180, 40, 120);
+
 }
 
 
