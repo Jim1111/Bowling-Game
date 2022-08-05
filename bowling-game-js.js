@@ -8,6 +8,13 @@ var w = canvas.width / 2;
 var splashSc = true;
 var insSc = false;
 var gameSc = false;
+var SetBalltrue = true;
+
+var bowlRse = false;
+var x = 100;
+var y = 640;
+var dx = 1;
+var dy = -2;
 
 ////////////////////////////////
 /////Translation Menu //////////
@@ -61,6 +68,9 @@ pin9.src = "images/pin.png";
 
 const pin10 = new Image();
 pin10.src = "images/pin.png";
+
+const setBowl = new Image();
+setBowl.src = "images/splEnd.png";
 
 
 
@@ -118,10 +128,36 @@ function Ins() {
     canvas.addEventListener("click", InsEnd);
 }
 
+function SetBall(e) {
+    if (ctx.isPointInPath(setBowl.path, e.offsetX, e.offsetY)) {
+        x = x+30;
+        if (x >= 700) {
+            x=-dx;
+        }
+    }
+}
+
+function setBall() {
+    ctx.drawImage(setBowl, w/2-40, 445, 450, 200);
+    setBowl.path = new Path2D();
+    setBowl.path.rect(w/2-40, 445, 450, 200);
+    ctx.font='900 20px Comic Sans MS';
+    ctx.fillText("Move the position of the bowling ball", w+10, 520);
+    ctx.fillText("Left Click on this label to move", w, 550);
+    ctx.fillText("Then Right Click to release the ball!", w, 580);
+    canvas.addEventListener("click", SetBall);
+}
+
+    window.addEventListener('contextmenu', (e) => {
+        SetBalltrue = false;
+        bowlRse = true;
+        e.preventDefault();
+    });
+
 function Game() {
     ctx.drawImage(bowlLane, 0, 0, 715, 750);
 
-    ctx.drawImage(ball, 330, 640, 85, 85);
+    ctx.drawImage(ball, x, y, 85, 85);
 
     ctx.drawImage(pin1, 290, 120, 40, 120);
     ctx.drawImage(pin2, 330, 120, 40, 120);
@@ -153,7 +189,21 @@ function playGame() {
     }  
     
     if (gameSc) {
-        Game();
+  
+        Game(); 
+
+        if (SetBalltrue) {
+        setBall();
+        }
+
+        if (bowlRse) {
+            y += dy;
+            }
+    
+            if (y <= 290) {
+                y=-200;
+            }
+
     }   
 
 }
