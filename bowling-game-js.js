@@ -10,11 +10,21 @@ var insSc = false;
 var gameSc = false;
 var SetBalltrue = true;
 
+var round1 = true;
+var round2 = false;
+var round3 = false;
+
 var bowlRse = false;
 var x = 100;
 var y = 640;
 var dx = 1;
 var dy = -2;
+
+// pins
+
+var pinLeft = true;
+var pinRight = true;
+var strikeTar = false;
 
 ////////////////////////////////
 /////Translation Menu //////////
@@ -25,6 +35,10 @@ var Bul = false;
 var Grk = false;
 var Tuk = false;
 /////////////////////////////////
+
+
+// sound effects
+var ballAud = new Audio("audio/bowling-ball.mp3");
 
    
 const splEnd = new Image();
@@ -128,6 +142,8 @@ function Ins() {
     canvas.addEventListener("click", InsEnd);
 }
 
+// Set up Bowling Ball //
+
 function SetBall(e) {
     if (ctx.isPointInPath(setBowl.path, e.offsetX, e.offsetY)) {
         x = x+30;
@@ -148,31 +164,99 @@ function setBall() {
     canvas.addEventListener("click", SetBall);
 }
 
+// Right release ball //
+
     window.addEventListener('contextmenu', (e) => {
         SetBalltrue = false;
         bowlRse = true;
         e.preventDefault();
     });
 
+    // Strike! //
+
+    function pins() {
+
+    if (pinLeft) {
+    ctx.drawImage(pin1, 290, 120, 40, 120);
+    }
+
+    if (pinRight) {
+    ctx.drawImage(pin2, 330, 120, 40, 120);
+    ctx.drawImage(pin3, 370, 120, 40, 120);
+    }
+
+    if (pinRight) {
+    ctx.drawImage(pin4, 410, 120, 40, 120);
+    }
+
+    if (pinLeft) {
+    ctx.drawImage(pin5, 310, 140, 40, 120);
+    }
+
+    if (pinRight) {
+    ctx.drawImage(pin6, 350, 140, 40, 120);
+    ctx.drawImage(pin7, 390, 140, 40, 120);
+    }
+
+    if (pinLeft) {
+    ctx.drawImage(pin8, 330, 160, 40, 120);
+    }
+
+    if (pinRight) {
+    ctx.drawImage(pin9, 370, 160, 40, 120);
+    }
+
+    if (pinLeft) {
+    ctx.drawImage(pin10, 350, 180, 40, 120);
+    }
+
+    }
+
+    function rounds() {
+        
+        if (round2) {
+            ctx.textAlign = "center";
+            ctx.fillStyle = "black";
+            ctx.fillRect(220, 500, 300, 120);  
+            ctx.fillStyle = "white";
+            ctx.font='900 50px Comic Sans MS';
+            ctx.fillText("Second Go!", w+10, 580);
+        }
+
+        if (round3) {
+            ctx.textAlign = "center";
+            ctx.fillStyle = "black";
+            ctx.fillRect(220, 500, 300, 120);  
+            ctx.fillStyle = "white";
+            ctx.font='900 50px Comic Sans MS';
+            ctx.fillText("Third Go!", w+10, 580);
+        }
+
+    }
+
+    function strike() {
+        ctx.textAlign = "center";
+        ctx.fillStyle = "black";
+        ctx.fillRect(150, 80, 430, 400);  
+        ctx.fillStyle = "white";
+        ctx.font='900 90px Comic Sans MS';
+        ctx.fillText("Strike!", w, 180);
+    }
+
+
+
 function Game() {
     ctx.drawImage(bowlLane, 0, 0, 715, 750);
 
     ctx.drawImage(ball, x, y, 85, 85);
 
-    ctx.drawImage(pin1, 290, 120, 40, 120);
-    ctx.drawImage(pin2, 330, 120, 40, 120);
-    ctx.drawImage(pin3, 370, 120, 40, 120);
-    ctx.drawImage(pin4, 410, 120, 40, 120);
+    pins();
 
-    ctx.drawImage(pin5, 310, 140, 40, 120);
-    ctx.drawImage(pin6, 350, 140, 40, 120);
-    ctx.drawImage(pin7, 390, 140, 40, 120);
+    rounds();
 
-    ctx.drawImage(pin8, 330, 160, 40, 120);
-    ctx.drawImage(pin9, 370, 160, 40, 120);
-
-    ctx.drawImage(pin10, 350, 180, 40, 120);
-
+    if (strikeTar) {
+    strike();
+    }
 }
 
 
@@ -197,12 +281,31 @@ function playGame() {
         }
 
         if (bowlRse) {
+            ballAud.play();
             y += dy;
-            }
+        }
     
-            if (y <= 290) {
-                y=-200;
-            }
+        if (x >= 200 && x <= 340 && y <= 180) {
+            pinLeft = false;
+        }
+
+        if (x >= 341 && x < 500 && y <= 180) {  
+            pinRight = false;
+        }
+
+        if (x >= 330 && x <= 382 && y <= 180) {
+            pinLeft = false;
+            pinRight = false;
+            strikeTar = true;
+        }
+
+        if (y <= 180) {
+        ballAud.pause();
+        ballAud.currentTime = 0;
+        y=-200;
+        round1 = false;  
+        round2 = true;
+        }
 
     }   
 
