@@ -9,6 +9,14 @@ var splashSc = true;
 var insSc = false;
 var gameSc = false;
 var SetBalltrue = true;
+var sec = true;
+var lastScreen = false;
+var end = false;
+var score = 5;
+
+/////
+var clickLeft = true;
+/////
 
 var round1 = true;
 var round2 = false;
@@ -40,6 +48,11 @@ var Tuk = false;
 // sound effects
 var ballAud = new Audio("audio/bowling-ball.mp3");
 
+const r2 = new Image();
+r2.src = "images/splEnd.png";
+
+const r3 = new Image();
+r3.src = "images/splEnd.png";
    
 const splEnd = new Image();
 splEnd.src = "images/splEnd.png";
@@ -130,8 +143,8 @@ function Ins() {
     ctx.font='900 90px Comic Sans MS';
     ctx.fillText("Bowling Game", w, 180);
     ctx.font='500 30px Comic Sans MS';
-    ctx.fillText("The game starts with 12 skittles", w, 260);
-    ctx.fillText("You can throw the ball three times", w, 310);
+    ctx.fillText("The game starts with 10 skittles", w, 260);
+    ctx.fillText("You can throw the ball two times", w, 310);
     ctx.fillText("See how many you can knock down!", w, 360);
     ctx.drawImage(insEnd, w/2-40, 400, 450, 200);
     ctx.font='900 50px Comic Sans MS';
@@ -145,7 +158,7 @@ function Ins() {
 // Set up Bowling Ball //
 
 function SetBall(e) {
-    if (ctx.isPointInPath(setBowl.path, e.offsetX, e.offsetY)) {
+    if (clickLeft && ctx.isPointInPath(setBowl.path, e.offsetX, e.offsetY)) {
         x = x+30;
         if (x >= 700) {
             x=-dx;
@@ -167,6 +180,7 @@ function setBall() {
 // Right release ball //
 
     window.addEventListener('contextmenu', (e) => {
+        clickLeft = false;
         SetBalltrue = false;
         bowlRse = true;
         e.preventDefault();
@@ -212,24 +226,63 @@ function setBall() {
 
     }
 
+    function Round2(e) {
+        if (ctx.isPointInPath(r2.path, e.offsetX, e.offsetY)) {
+            clickLeft = true;
+            y = 640;
+            x = 100;
+            bowlRse = false;
+            round2 = false;
+            lastScreen = true;
+            SetBalltrue = true;
+            canvas.removeEventListener("click", Round2);
+         }
+     } 
+
+     function End(e) {
+        if (ctx.isPointInPath(r3.path, e.offsetX, e.offsetY)) {
+            clickLeft = true;
+            y = 640;
+            x = 100;
+            sec = true;
+            bowlRse = false;
+            pinLeft = true;
+            pinRight = true;
+            gameSc = false;
+            round1 = true;
+            end = false;
+            lastScreen = false;
+            SetBalltrue = true;
+            splashSc = true;
+            canvas.removeEventListener("click", End);
+         }
+     } 
+
     function rounds() {
         
         if (round2) {
-            ctx.textAlign = "center";
-            ctx.fillStyle = "black";
-            ctx.fillRect(220, 500, 300, 120);  
-            ctx.fillStyle = "white";
+            ctx.drawImage(r2, w/2-40, 400, 450, 200);
+            ctx.textAlign = "center"; 
             ctx.font='900 50px Comic Sans MS';
-            ctx.fillText("Second Go!", w+10, 580);
+            ctx.fillText("Second Go!", w+10, 520);
+            r2.path = new Path2D();
+            r2.path.rect(w/2-40, 465, 450, 200);
+            sec = false;
+            canvas.addEventListener("click", Round2);
         }
 
-        if (round3) {
-            ctx.textAlign = "center";
-            ctx.fillStyle = "black";
-            ctx.fillRect(220, 500, 300, 120);  
-            ctx.fillStyle = "white";
-            ctx.font='900 50px Comic Sans MS';
-            ctx.fillText("Third Go!", w+10, 580);
+        if (end) {
+            ctx.drawImage(r3, w/2-40, 400, 450, 200);
+            ctx.textAlign = "center"; 
+            ctx.font='900 35px Comic Sans MS';
+            ctx.fillText("Game Over!", w+10, 475);
+            ctx.font='900 25px Comic Sans MS';
+            ctx.fillText("You knocked down " + score + " skittles", w+10, 510);
+            ctx.fillText("Well Done!", w+10, 545);
+            r3.path = new Path2D();
+            r3.path.rect(w/2-40, 465, 600, 400);
+            lastScreen = false;
+            canvas.addEventListener("click", End);
         }
 
     }
@@ -249,7 +302,7 @@ function Game() {
     ctx.drawImage(bowlLane, 0, 0, 715, 750);
 
     ctx.drawImage(ball, x, y, 85, 85);
-
+    
     pins();
 
     rounds();
@@ -258,6 +311,7 @@ function Game() {
     strike();
     }
 }
+
 
 
 function playGame() {
@@ -293,19 +347,31 @@ function playGame() {
             pinRight = false;
         }
 
-        if (x >= 330 && x <= 382 && y <= 180) {
+        if (round1) {
+        if (x >= 330 && x <= 342 && y <= 180) {
             pinLeft = false;
             pinRight = false;
             strikeTar = true;
         }
+    }
 
         if (y <= 180) {
         ballAud.pause();
         ballAud.currentTime = 0;
         y=-200;
-        round1 = false;  
-        round2 = true;
+        round1 = false;
+
+        if (sec) {
+            round2 = true;
         }
+
+        if (lastScreen) {
+            end = true;
+        }
+
+        }
+
+        
 
     }   
 
