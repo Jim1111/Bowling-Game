@@ -12,7 +12,8 @@ var SetBalltrue = true;
 var sec = true;
 var lastScreen = false;
 var end = false;
-var score = 5;
+var score = 0;
+var Rolling = false;
 
 /////
 var clickLeft = true;
@@ -163,6 +164,7 @@ function SetBall(e) {
         if (x >= 700) {
             x=-dx;
         }
+        Rolling = true;
     }
 }
 
@@ -172,7 +174,7 @@ function setBall() {
     setBowl.path.rect(w/2-40, 445, 450, 200);
     ctx.font='900 20px Comic Sans MS';
     ctx.fillText("Move the position of the bowling ball", w+10, 520);
-    ctx.fillText("Left Click on this label to move", w, 550);
+    ctx.fillText("By Left Clicking on this label", w, 550);
     ctx.fillText("Then Right Click to release the ball!", w, 580);
     canvas.addEventListener("click", SetBall);
 }
@@ -235,6 +237,12 @@ function setBall() {
             round2 = false;
             lastScreen = true;
             SetBalltrue = true;
+
+            if (strikeTar) {
+                pinLeft = true;
+                pinRight = true;
+            }
+
             canvas.removeEventListener("click", Round2);
          }
      } 
@@ -254,9 +262,12 @@ function setBall() {
             lastScreen = false;
             SetBalltrue = true;
             splashSc = true;
+            score=0;
             canvas.removeEventListener("click", End);
          }
      } 
+
+     
 
     function rounds() {
         
@@ -264,7 +275,20 @@ function setBall() {
             ctx.drawImage(r2, w/2-40, 400, 450, 200);
             ctx.textAlign = "center"; 
             ctx.font='900 50px Comic Sans MS';
-            ctx.fillText("Second Go!", w+10, 520);
+
+            if (strikeTar) {
+                ctx.fillText("Strike!", w+10, 485);
+                ctx.fillText("Second Go!", w+10, 530);
+                ctx.font='900 20px Comic Sans MS';
+                ctx.fillText("You knocked down " + score + " skittles so far!", w+10, 560);
+            }
+
+            if (!strikeTar) {
+                ctx.fillText("Second Go!", w+10, 500);
+                ctx.font='900 20px Comic Sans MS';
+                ctx.fillText("You knocked down " + score + " skittles so far!", w+10, 530);
+            }
+
             r2.path = new Path2D();
             r2.path.rect(w/2-40, 465, 450, 200);
             sec = false;
@@ -287,31 +311,62 @@ function setBall() {
 
     }
 
-    function strike() {
-        ctx.textAlign = "center";
-        ctx.fillStyle = "black";
-        ctx.fillRect(150, 80, 430, 400);  
-        ctx.fillStyle = "white";
-        ctx.font='900 90px Comic Sans MS';
-        ctx.fillText("Strike!", w, 180);
+    function rolling() {
+
+    if (bowlRse) {
+        ballAud.play();
+        y += dy;
     }
 
+    if (pinLeft && pinRight && round1) {
+        if (x >= 331 && x <= 340 && y <= 180) {   
+            pinLeft = false;
+            pinRight = false;
+            strikeTar = true;
+            score=score+10;
+        }
+    }
+
+    if (x >= 200 && x <= 290 && y < 180) {
+        if (pinLeft) {
+            pinLeft = false;
+            score=score+4;
+        }
+    }
+
+    if (x >= 291 && x <= 430 && y < 180) {
+        if (pinRight) {
+            pinRight = false;
+            score=score+6;
+        }
+    }  
+
+    if (y < 180) {
+        Rolling = false;
+        ballAud.pause();
+        ballAud.currentTime = 0;
+        y=-200;
+        round1 = false;
+        Rolling = false;
+
+    if (sec) {
+        round2 = true;
+    }
+
+    if (lastScreen) {
+        end = true;
+    }
+
+    }
+}
 
 
 function Game() {
     ctx.drawImage(bowlLane, 0, 0, 715, 750);
-
-    ctx.drawImage(ball, x, y, 85, 85);
-    
+    ctx.drawImage(ball, x, y, 85, 85);  
     pins();
-
     rounds();
-
-    if (strikeTar) {
-    strike();
-    }
 }
-
 
 
 function playGame() {
@@ -331,50 +386,13 @@ function playGame() {
         Game(); 
 
         if (SetBalltrue) {
-        setBall();
+            setBall();
         }
 
-        if (bowlRse) {
-            ballAud.play();
-            y += dy;
-        }
-    
-        if (x >= 200 && x <= 340 && y <= 180) {
-            pinLeft = false;
-        }
-
-        if (x >= 341 && x < 500 && y <= 180) {  
-            pinRight = false;
-        }
-
-        if (round1) {
-        if (x >= 330 && x <= 342 && y <= 180) {
-            pinLeft = false;
-            pinRight = false;
-            strikeTar = true;
-        }
-    }
-
-        if (y <= 180) {
-        ballAud.pause();
-        ballAud.currentTime = 0;
-        y=-200;
-        round1 = false;
-
-        if (sec) {
-            round2 = true;
-        }
-
-        if (lastScreen) {
-            end = true;
-        }
-
-        }
-
-        
-
+        if (Rolling) {
+            rolling();
+        }      
     }   
-
 }
 
 
