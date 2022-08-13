@@ -24,8 +24,8 @@ var round2 = false;
 var round3 = false;
 
 var bowlRse = false;
-var x = 100;
-var y = 640;
+var x = 150;
+var y = 660;
 var dx = 1;
 var dy = -2;
 
@@ -34,6 +34,15 @@ var dy = -2;
 var pinLeft = true;
 var pinRight = true;
 var strikeTar = false;
+
+
+
+// Settings //
+
+var setMenu = false;
+
+const settings = new Image();
+settings.src = "images/settings.png";
 
 ////////////////////////////////
 /////Translation Menu //////////
@@ -44,6 +53,13 @@ var Bul = false;
 var Grk = false;
 var Tuk = false;
 /////////////////////////////////
+
+// End of Settings //
+
+
+
+
+
 
 
 // sound effects
@@ -108,16 +124,33 @@ function SplashEnd(e) {
            insSc = true;
            canvas.removeEventListener("click", SplashEnd);
         }
-    } 
+    }
+
+function settingsOpen(e) {
+    if (ctx.isPointInPath(settings.path, e.offsetX, e.offsetY)) {
+        setMenu=true;
+        alert("working...");
+        canvas.removeEventListener("click", settingsOpen);
+        }
+    }
 
 function Splash() {
+    ctx.drawImage(settings, 600, 0, 80, 80);
+    settings.path = new Path2D();
+    settings.path.rect(600, 0, 100, 100);
+    canvas.addEventListener("click", settingsOpen);
+
     ctx.textAlign = "center";
+    ctx.font='400 17px Arial';
+    ctx.fillStyle = "white";
+    ctx.fillText("Settings", 640, 85);
+
     ctx.font='900 150px Arial';
     ctx.fillStyle = "purple";
-    ctx.fillText("Bowling", w, 220);
+    ctx.fillText("Bowling", w, 245);
     ctx.font='500 90px Comic Sans MS';
     ctx.fillStyle = "silver";
-    ctx.fillText("Game", w, 300);
+    ctx.fillText("Game", w, 325);
     ctx.fillRect(0, 450, 715, 235); 
     ctx.drawImage(splEnd, w/2-40, 465, 450, 200);
     ctx.font='900 40px Comic Sans MS';
@@ -160,9 +193,9 @@ function Ins() {
 
 function SetBall(e) {
     if (clickLeft && ctx.isPointInPath(setBowl.path, e.offsetX, e.offsetY)) {
-        x = x+30;
-        if (x >= 700) {
-            x=-dx;
+        x = x+20;
+        if (x >= 500) {
+            x=-dx+150;
         }
         Rolling = true;
     }
@@ -222,17 +255,19 @@ function setBall() {
     ctx.drawImage(pin9, 370, 160, 40, 120);
     }
 
-    if (pinLeft) {
+    if (pinRight) {
     ctx.drawImage(pin10, 350, 180, 40, 120);
     }
+
+    
 
     }
 
     function Round2(e) {
         if (ctx.isPointInPath(r2.path, e.offsetX, e.offsetY)) {
             clickLeft = true;
-            y = 640;
-            x = 100;
+            x = 150;
+            y = 660;
             bowlRse = false;
             round2 = false;
             lastScreen = true;
@@ -250,8 +285,8 @@ function setBall() {
      function End(e) {
         if (ctx.isPointInPath(r3.path, e.offsetX, e.offsetY)) {
             clickLeft = true;
-            y = 640;
-            x = 100;
+            x = 150;
+            y = 660;
             sec = true;
             bowlRse = false;
             pinLeft = true;
@@ -277,10 +312,10 @@ function setBall() {
             ctx.font='900 50px Comic Sans MS';
 
             if (strikeTar) {
-                ctx.fillText("Strike!", w+10, 485);
-                ctx.fillText("Second Go!", w+10, 530);
+                ctx.fillText("Strike!", w+10, 475);
+                ctx.fillText("Second Go!", w+10, 522);
                 ctx.font='900 20px Comic Sans MS';
-                ctx.fillText("You knocked down " + score + " skittles so far!", w+10, 560);
+                ctx.fillText("You knocked down " + score + " skittles so far!", w+10, 555);
             }
 
             if (!strikeTar) {
@@ -311,6 +346,14 @@ function setBall() {
 
     }
 
+    function ScoreBoard() {
+       ctx.textAlign = "center"; 
+       ctx.font='600 40px Comic Sans MS';
+       ctx.fillStyle = "white";
+       ctx.fillText("Score: " + score, w, 70);
+       ctx.fillStyle = "black";
+    }
+
     function rolling() {
 
     if (bowlRse) {
@@ -318,8 +361,9 @@ function setBall() {
         y += dy;
     }
 
+
     if (pinLeft && pinRight && round1) {
-        if (x >= 331 && x <= 340 && y <= 180) {   
+        if (x >= 320 && x <= 360 && y <= 180) {   
             pinLeft = false;
             pinRight = false;
             strikeTar = true;
@@ -327,17 +371,17 @@ function setBall() {
         }
     }
 
-    if (x >= 200 && x <= 290 && y < 180) {
+    if (x >= 200 && x <= 300 && y < 180) {
         if (pinLeft) {
             pinLeft = false;
-            score=score+4;
+            score=score+3;
         }
     }
 
-    if (x >= 291 && x <= 430 && y < 180) {
+    if (x >= 301 && x <= 430 && y < 180) {
         if (pinRight) {
             pinRight = false;
-            score=score+6;
+            score=score+7;
         }
     }  
 
@@ -363,7 +407,8 @@ function setBall() {
 
 function Game() {
     ctx.drawImage(bowlLane, 0, 0, 715, 750);
-    ctx.drawImage(ball, x, y, 85, 85);  
+    ctx.drawImage(ball, x, y, 70, 70);
+    ScoreBoard(); 
     pins();
     rounds();
 }
