@@ -41,6 +41,12 @@ var strikeTar = false;
 
 var setMenu = false;
 
+const mBack= new Image();
+mBack.src = "images/menuAssets/backGr1.png";
+
+const cross= new Image();
+cross.src = "images/menuAssets/cross.png";
+
 const settings = new Image();
 settings.src = "images/settings.png";
 
@@ -58,12 +64,9 @@ var Tuk = false;
 
 
 
-
-
-
-
 // sound effects
 var ballAud = new Audio("audio/bowling-ball.mp3");
+var strikeAud = new Audio("audio/strike.mp3");
 
 const r2 = new Image();
 r2.src = "images/splEnd.png";
@@ -117,6 +120,68 @@ const setBowl = new Image();
 setBowl.src = "images/splEnd.png";
 
 
+// End Mouse Menu and return to game //
+function endMenu(e) {
+    if (setMenu) {
+        if (ctx.isPointInPath(cross.path, e.offsetX, e.offsetY)) {
+
+            setMenu=false;
+            insSc=false;
+            splashSc=true;
+
+            canvas.removeEventListener("click", endMenu);
+        }
+    }
+}
+
+
+function showMenu() {
+    if (setMenu) {
+
+      ctx.fillStyle = "black";
+  
+      ctx.drawImage(mBack, 0, 0, canvas.width, canvas.height);
+  
+      ctx.globalAlpha = 1.0; 
+      ctx.textAlign = "center"; 
+      ctx.font = "100 80px Impact, fantasy";
+
+      if (En) {
+        ctx.fillText("Settings", w, 100);
+      }
+      if (Ger) {
+        ctx.fillText("Einstellungen", w, 100);
+      }
+      if (Rom) {
+        ctx.fillText("Setări", w, 100);
+      }
+      if (Bul) {
+        ctx.fillText("Настройки", w, 100);
+      }
+      if (Grk) {
+        ctx.fillText("Ρυθμίσεις", w, 100);
+      }
+      if (Tuk) {
+        ctx.fillText("Ayarlar", w, 100);
+      }
+
+      ctx.textAlign = "left";
+      ctx.font='500 90px Comic Sans MS';
+
+      ctx.textAlign = "center"; 
+
+    ctx.drawImage(cross, w-30, 645, 50, 50);
+
+    cross.path = new Path2D();
+    cross.path.rect(w-30, 645, 50, 50);
+
+    canvas.addEventListener("click", endMenu);
+
+  
+  } // setMenu = true
+} // end of showMenu
+
+
 
 function SplashEnd(e) {
        if (ctx.isPointInPath(splEnd.path, e.offsetX, e.offsetY)) {
@@ -129,7 +194,6 @@ function SplashEnd(e) {
 function settingsOpen(e) {
     if (ctx.isPointInPath(settings.path, e.offsetX, e.offsetY)) {
         setMenu=true;
-        alert("working...");
         canvas.removeEventListener("click", settingsOpen);
         }
     }
@@ -138,7 +202,6 @@ function Splash() {
     ctx.drawImage(settings, 600, 0, 80, 80);
     settings.path = new Path2D();
     settings.path.rect(600, 0, 100, 100);
-    canvas.addEventListener("click", settingsOpen);
 
     ctx.textAlign = "center";
     ctx.font='400 17px Arial';
@@ -158,6 +221,8 @@ function Splash() {
     ctx.fillText("Start Game!", w, 575);
     splEnd.path = new Path2D();
     splEnd.path.rect(w/2-40, 465, 450, 200);
+
+    canvas.addEventListener("click", settingsOpen);
     canvas.addEventListener("click", SplashEnd);
 }
 
@@ -204,7 +269,7 @@ function SetBall(e) {
 function setBall() {
     ctx.drawImage(setBowl, w/2-40, 445, 450, 200);
     setBowl.path = new Path2D();
-    setBowl.path.rect(w/2-40, 445, 450, 200);
+    setBowl.path.rect(w/2-40, 445, 600, 400);
     ctx.font='900 20px Comic Sans MS';
     ctx.fillText("Move the position of the bowling ball", w+10, 520);
     ctx.fillText("By Left Clicking on this label", w, 550);
@@ -367,6 +432,7 @@ function setBall() {
             pinLeft = false;
             pinRight = false;
             strikeTar = true;
+            strikeAud.play();
             score=score+10;
         }
     }
@@ -374,6 +440,7 @@ function setBall() {
     if (x >= 200 && x <= 300 && y < 180) {
         if (pinLeft) {
             pinLeft = false;
+            strikeAud.play();
             score=score+3;
         }
     }
@@ -381,6 +448,7 @@ function setBall() {
     if (x >= 301 && x <= 430 && y < 180) {
         if (pinRight) {
             pinRight = false;
+            strikeAud.play();
             score=score+7;
         }
     }  
@@ -416,13 +484,17 @@ function Game() {
 
 function playGame() {
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    
+    if (setMenu) {
+        showMenu();
+    }
 
-    if (splashSc) {
+    if (splashSc && !setMenu) {
         Splash();
     }
     
-    if (insSc) {
+    if (insSc && !setMenu) {
         Ins();
     }  
     
@@ -436,10 +508,9 @@ function playGame() {
 
         if (Rolling) {
             rolling();
-        }      
-    }   
+        }        
+    }
 }
-
 
 function animate() {  
     
