@@ -42,7 +42,7 @@ var strikeTar = false;
 var setMenu = false;
 
 const rTick1 = new Image();
-rTick1.src = "images/menuAssets/rtick1.png";
+rTick1.src = "images/menuAssets/rTick1.png";
 
 const mBack = new Image();
 mBack.src = "images/menuAssets/backGr1.png";
