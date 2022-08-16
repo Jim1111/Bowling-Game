@@ -41,8 +41,14 @@ var strikeTar = false;
 
 var setMenu = false;
 
-const mBack= new Image();
+const rTick1 = new Image();
+rTick1.src = "images/menuAssets/rtick1.png";
+
+const mBack = new Image();
 mBack.src = "images/menuAssets/backGr1.png";
+
+const BoxMus1 = new Image();
+BoxMus1.src = "images/menuAssets/BoxMus1.png";
 
 const cross= new Image();
 cross.src = "images/menuAssets/cross.png";
@@ -67,6 +73,7 @@ var Tuk = false;
 // sound effects
 var ballAud = new Audio("audio/bowling-ball.mp3");
 var strikeAud = new Audio("audio/strike.mp3");
+var music = new Audio("audio/music.mp3");
 
 const r2 = new Image();
 r2.src = "images/splEnd.png";
@@ -166,7 +173,65 @@ function showMenu() {
       }
 
       ctx.textAlign = "left";
-      ctx.font='500 90px Comic Sans MS';
+      ctx.font = "900 40px Arial";
+    
+    if (En) {
+        ctx.fillText("Music", 149, 162);
+    }
+
+    if (Ger) {
+        ctx.fillText("Musik", 149, 162);
+    }
+
+    if (Rom) {
+        ctx.fillText("Muzică", 149, 162);
+    }
+
+    if (Bul) {
+        ctx.fillText("Музика", 149, 162);
+    }
+
+    if (Grk) {
+        ctx.fillText("ΜΟΥΣΙΚΗ", 149, 162);
+    }
+
+    if (Tuk) {
+        ctx.fillText("Müzik", 149, 162);
+    }
+    
+    ctx.font = "700 30px Arial";
+
+    ctx.drawImage(BoxMus1, 62, 190, 50, 50);
+    BoxMus1.path = new Path2D();
+    BoxMus1.path.rect(62, 190, 50, 50);
+
+    ctx.fillStyle = "black";
+    ctx.globalAlpha = 1.0;
+
+    //if (bkMus) {
+        ctx.drawImage(rTick1, 67, 192, 50, 40);
+    //}
+
+    
+    if (En) {
+        ctx.fillText("On", 120, 230);
+    }
+    if (Ger) {
+        ctx.fillText("An", 120, 230);
+    }
+    if (Rom) {
+        ctx.fillText("Pe", 120, 230);
+    }
+    if (Bul) {
+        ctx.fillText("Ha", 120, 230);
+    }
+    if (Grk) {
+        ctx.fillText("Επί", 120, 230);
+    }
+    if (Tuk) {
+        ctx.fillText("Açık", 120, 230);
+    }
+
 
       ctx.textAlign = "center"; 
 
@@ -370,7 +435,7 @@ function setBall() {
      
 
     function rounds() {
-        
+
         if (round2) {
             ctx.drawImage(r2, w/2-40, 400, 450, 200);
             ctx.textAlign = "center"; 
@@ -413,7 +478,7 @@ function setBall() {
 
     function ScoreBoard() {
        ctx.textAlign = "center"; 
-       ctx.font='600 40px Comic Sans MS';
+       ctx.font='600 55px Arial';
        ctx.fillStyle = "white";
        ctx.fillText("Score: " + score, w, 70);
        ctx.fillStyle = "black";
@@ -428,7 +493,7 @@ function setBall() {
 
 
     if (pinLeft && pinRight && round1) {
-        if (x >= 320 && x <= 360 && y <= 180) {   
+        if (x >= 320 && x <= 335 && y <= 180) {   
             pinLeft = false;
             pinRight = false;
             strikeTar = true;
@@ -437,17 +502,19 @@ function setBall() {
         }
     }
 
+    if (pinLeft) {
     if (x >= 200 && x <= 300 && y < 180) {
-        if (pinLeft) {
             pinLeft = false;
+            strikeTar = false;
             strikeAud.play();
             score=score+3;
         }
     }
 
+    if (pinRight) {
     if (x >= 301 && x <= 430 && y < 180) {
-        if (pinRight) {
             pinRight = false;
+            strikeTar = false;;
             strikeAud.play();
             score=score+7;
         }
@@ -500,7 +567,7 @@ function playGame() {
     
     if (gameSc) {
   
-        Game(); 
+        Game();
 
         if (SetBalltrue) {
             setBall();
@@ -515,6 +582,8 @@ function playGame() {
 function animate() {  
     
     playGame();
+    music.play();
+    music.volume = 0.2;
 
     requestAnimationFrame(animate);
     
