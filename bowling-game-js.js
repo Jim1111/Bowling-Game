@@ -14,6 +14,7 @@ var lastScreen = false;
 var end = false;
 var score = 0;
 var Rolling = false;
+var introSp = true;
 
 /////
 var clickLeft = true;
@@ -87,11 +88,14 @@ var Tuk = false;
 // End of Settings //
 
 
-
 // sound effects
 var ballAud = new Audio("audio/bowling-ball.mp3");
 var strikeAud = new Audio("audio/strike.mp3");
 var music = new Audio("audio/music.mp3");
+var introSpAud = new Audio("audio/introSpAud.mp3");
+var letsGoAud = new Audio("audio/letsGoAud.mp3");
+var cheeringAud = new Audio("audio/cheering.mp3");
+var stikeVceAud = new Audio("audio/strikeVoice.mp3");
 
 const r2 = new Image();
 r2.src = "images/splEnd.png";
@@ -475,6 +479,7 @@ function Splash() {
 
 function InsEnd(e) {
     if (ctx.isPointInPath(insEnd.path, e.offsetX, e.offsetY)) {
+        letsGoAud.play();
         insSc = false;
         gameSc = true;
         canvas.removeEventListener("click", InsEnd);
@@ -490,12 +495,19 @@ function Ins() {
     ctx.fillText("Bowling Game", w, 180);
     ctx.font='500 30px Comic Sans MS';
     ctx.fillText("The game starts with 10 skittles", w, 260);
-    ctx.fillText("You can throw the ball two times", w, 310);
+    ctx.fillText("You can throw the ball twice", w, 310);
     ctx.fillText("See how many you can knock down!", w, 360);
+
+    if (introSp) {
+        introSpAud.play();
+        introSp = false;
+    }
+
     ctx.drawImage(insEnd, w/2-40, 400, 450, 200);
     ctx.font='900 50px Comic Sans MS';
     ctx.fillStyle = "black";
-    ctx.fillText("Go!", w, 520);
+    ctx.fillText("Let's Go!", w, 520);
+
     insEnd.path = new Path2D();
     insEnd.path.rect(w/2-40, 465, 450, 200);
     canvas.addEventListener("click", InsEnd);
@@ -675,7 +687,13 @@ function setBall() {
 
 
     if (pinLeft && pinRight && round1) {
-        if (x >= 320 && x <= 335 && y <= 180) {   
+        if (x >= 320 && x <= 335 && y <= 180) { 
+
+            //if (introSp) {
+                cheeringAud.play();
+                stikeVceAud.play();
+            //}
+
             pinLeft = false;
             pinRight = false;
             strikeTar = true;
@@ -750,6 +768,9 @@ function playGame() {
     if (gameSc) {
   
         Game();
+
+        introSpAud.pause();
+        introSpAud.currentTime = 0;
 
         if (SetBalltrue) {
             setBall();
