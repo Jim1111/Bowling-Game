@@ -37,18 +37,36 @@ var strikeTar = false;
 
 
 
-// Settings //
+
+// Settings Menu //
 
 var setMenu = false;
+var bkMus = true;
+var colod = true;
+var white = false;
 
 const rTick1 = new Image();
-rTick1.src = "images/menuAssets/rTick1.png";
+rTick1.src = "images/menuAssets/rTick.png";
 
 const mBack = new Image();
-mBack.src = "images/menuAssets/backGr1.png";
+mBack.src = "images/menuAssets/menuBackGr.png";
+
+const menuHead = new Image();
+menuHead.src = "images/menuAssets/header.png";
 
 const BoxMus1 = new Image();
-BoxMus1.src = "images/menuAssets/BoxMus1.png";
+BoxMus1.src = "images/menuAssets/Box.png";
+
+const BoxMus2 = new Image();
+BoxMus2.src = "images/menuAssets/Box.png";
+
+const BoxBack1 = new Image();
+BoxBack1.src = "images/menuAssets/Box.png";
+
+const BoxBack2 = new Image();
+BoxBack2.src = "images/menuAssets/Box.png";
+
+
 
 const cross= new Image();
 cross.src = "images/menuAssets/cross.png";
@@ -126,6 +144,30 @@ pin10.src = "images/pin.png";
 const setBowl = new Image();
 setBowl.src = "images/splEnd.png";
 
+////// music change ///////////////////
+///////////////////////////////////////
+
+function MustickT(e) {
+    if (setMenu) {
+        if (ctx.isPointInPath(BoxMus1.path, e.offsetX, e.offsetY)) {
+            bkMus=true;
+            canvas.removeEventListener("click", MustickT);
+        }
+    } // setMenu
+}
+
+function MustickF(e) {
+    if (setMenu) {
+        if (ctx.isPointInPath(BoxMus2.path, e.offsetX, e.offsetY)) {
+            bkMus=false;
+            canvas.removeEventListener("click", MustickF);
+        }
+    } // setMenu
+}
+
+/////End of Mouse music Change///////////////////
+/////////////////////////////////////////////////
+
 
 // End Mouse Menu and return to game //
 function endMenu(e) {
@@ -172,31 +214,38 @@ function showMenu() {
         ctx.fillText("Ayarlar", w, 100);
       }
 
+      
+
       ctx.textAlign = "left";
-      ctx.font = "900 40px Arial";
+
+      ctx.fillStyle = "white";
+
+      ctx.drawImage(menuHead, 62, 130, 250, 50);
+
+      ctx.font = "900 25px Arial"; 
     
     if (En) {
-        ctx.fillText("Music", 149, 162);
+        ctx.fillText("Music", 149, 164);
     }
 
     if (Ger) {
-        ctx.fillText("Musik", 149, 162);
+        ctx.fillText("Musik", 149, 164);
     }
 
     if (Rom) {
-        ctx.fillText("Muzică", 149, 162);
+        ctx.fillText("Muzică", 149, 164);
     }
 
     if (Bul) {
-        ctx.fillText("Музика", 149, 162);
+        ctx.fillText("Музика", 149, 164);
     }
 
     if (Grk) {
-        ctx.fillText("ΜΟΥΣΙΚΗ", 149, 162);
+        ctx.fillText("ΜΟΥΣΙΚΗ", 149, 164);
     }
 
     if (Tuk) {
-        ctx.fillText("Müzik", 149, 162);
+        ctx.fillText("Müzik", 149, 164);
     }
     
     ctx.font = "700 30px Arial";
@@ -208,9 +257,9 @@ function showMenu() {
     ctx.fillStyle = "black";
     ctx.globalAlpha = 1.0;
 
-    //if (bkMus) {
+    if (bkMus) {
         ctx.drawImage(rTick1, 67, 192, 50, 40);
-    //}
+    }
 
     
     if (En) {
@@ -232,8 +281,141 @@ function showMenu() {
         ctx.fillText("Açık", 120, 230);
     }
 
+    ctx.drawImage(BoxMus2, 62, 245, 50, 50);
+    BoxMus2.path = new Path2D();
+    BoxMus2.path.rect(62, 245, 50, 50);
 
-      ctx.textAlign = "center"; 
+    if (!bkMus) {
+        ctx.drawImage(rTick1, 67, 247, 50, 40);
+    }
+
+    
+
+    if (En) {
+        ctx.fillText("Off", 120, 282);
+    }
+    if (Ger) {
+        ctx.fillText("Aus", 120, 282);
+    }
+    if (Rom) {
+        ctx.fillText("Oprit", 120, 282);
+    }
+    if (Bul) {
+        ctx.fillText("Изключено", 120, 282);
+    }
+    if (Grk) {
+        ctx.fillText("Μακριά από", 120, 282);
+    }
+    if (Tuk) {
+        ctx.fillText("Kapalı", 120, 282);
+    }
+
+
+    canvas.addEventListener("click", MustickT);
+    canvas.addEventListener("click", MustickF);
+    // End of Music
+
+
+    // Speech
+  
+    ctx.drawImage(menuHead, 410, 130, 250, 50);
+
+    ctx.fillStyle = "white";
+
+    ctx.font = "900 25px Arial"; 
+
+    if (En) {
+        ctx.fillText("Speech", 480, 164);
+    }
+
+    if (Ger) {
+        ctx.fillText("Rede", 480, 164);
+    }
+
+    if (Rom) {
+        ctx.fillText("Vorbire", 480, 164);
+    }
+
+    if (Bul) {
+        ctx.fillText("Реч", 480, 164);
+    }
+
+    if (Grk) {
+        ctx.fillText("Ομιλία", 480, 164);
+    }
+    if (Tuk) {
+        ctx.fillText("Konuşma", 480, 164);
+    }
+
+
+    ctx.fillStyle = "black";
+    ctx.font = "700 30px Arial";
+
+    ctx.drawImage(BoxBack1, 410, 190, 50, 50);
+    BoxBack1.path = new Path2D();
+    BoxBack1.path.rect(410, 190, 50, 50);
+
+    if (colod) {  
+        ctx.drawImage(rTick1, 417, 192, 50, 40);
+    }
+
+
+
+    if (En) {
+        ctx.fillText("On", 470, 230);
+    }
+    if (Ger) {
+        ctx.fillText("An", 470, 230);
+    }
+    if (Rom) {
+        ctx.fillText("Pe", 470, 230);
+    }
+    if (Bul) {
+        ctx.fillText("Ha", 470, 230);
+    }
+    if (Grk) {
+        ctx.fillText("Επί", 470, 230);
+    }
+    if (Tuk) {
+        ctx.fillText("Açık", 470, 230);
+    }
+
+    ctx.drawImage(BoxBack2, 410, 245, 50, 50);
+    BoxBack2.path = new Path2D();
+    BoxBack2.path.rect(410, 245, 50, 50);
+
+    
+
+    if (white) {
+        ctx.drawImage(rTick1, 417, 247, 50, 40);
+    }
+    
+    if (En) {
+        ctx.fillText("Off", 470, 282);
+    }
+    if (Ger) {
+        ctx.fillText("Aus", 470, 282);
+    }
+    if (Rom) {
+        ctx.fillText("Oprit", 470, 282);
+    }
+    if (Bul) {
+        ctx.fillText("Изключено", 470, 282);
+    }
+    if (Grk) {
+        ctx.fillText("Μακριά από", 470, 282);
+    }
+    if (Tuk) {
+        ctx.fillText("Kapalı", 470, 282);
+    }
+
+    //canvas.addEventListener("click", speechtickT);
+    //canvas.addEventListener("click", speechtickF);
+
+    // End of Speech
+
+
+    ctx.textAlign = "center"; 
 
     ctx.drawImage(cross, w-30, 645, 50, 50);
 
@@ -342,7 +524,7 @@ function setBall() {
     canvas.addEventListener("click", SetBall);
 }
 
-// Right release ball //
+// Right mouse button release ball //
 
     window.addEventListener('contextmenu', (e) => {
         clickLeft = false;
@@ -351,7 +533,7 @@ function setBall() {
         e.preventDefault();
     });
 
-    // Strike! //
+    // 10 skittles //
 
     function pins() {
 
@@ -582,8 +764,16 @@ function playGame() {
 function animate() {  
     
     playGame();
-    music.play();
-    music.volume = 0.2;
+
+    if (bkMus) {
+        music.play();
+        music.volume = 0.2;
+    }
+    
+    if (!bkMus) {
+        music.pause();
+        music.currentTime = 0;
+    }
 
     requestAnimationFrame(animate);
     
