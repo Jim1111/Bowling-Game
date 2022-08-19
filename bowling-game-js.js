@@ -15,6 +15,7 @@ var end = false;
 var score = 0;
 var Rolling = false;
 var introSp = true;
+var wellDone = true;
 
 /////
 var clickLeft = true;
@@ -96,6 +97,19 @@ var introSpAud = new Audio("audio/introSpAud.mp3");
 var letsGoAud = new Audio("audio/letsGoAud.mp3");
 var cheeringAud = new Audio("audio/cheering.mp3");
 var stikeVceAud = new Audio("audio/strikeVoice.mp3");
+var wellDoneAud = new Audio("audio/wellDone.mp3");
+
+var score3Aud = new Audio("audio/score3.mp3");
+var score7Aud = new Audio("audio/score7.mp3");
+var score10Aud = new Audio("audio/score10.mp3");
+var score13Aud = new Audio("audio/score13.mp3");
+var score17Aud = new Audio("audio/score17.mp3");
+
+var score3 = true;
+var score7 = true;
+var score10 = true;
+var score13 = true;
+var score17 = true;
 
 const r2 = new Image();
 r2.src = "images/splEnd.png";
@@ -529,10 +543,10 @@ function setBall() {
     ctx.drawImage(setBowl, w/2-40, 445, 450, 200);
     setBowl.path = new Path2D();
     setBowl.path.rect(w/2-40, 445, 600, 400);
-    ctx.font='900 20px Comic Sans MS';
+    ctx.font='900 19px Comic Sans MS';
     ctx.fillText("Move the position of the bowling ball", w+10, 520);
     ctx.fillText("By Left Clicking on this label", w, 550);
-    ctx.fillText("Then Right Click to release the ball!", w, 580);
+    ctx.fillText("Then Right Clicking to release the ball!", w+5, 580);
     canvas.addEventListener("click", SetBall);
 }
 
@@ -622,6 +636,12 @@ function setBall() {
             SetBalltrue = true;
             splashSc = true;
             score=0;
+            wellDone = true;
+            score3 = true;
+            score7 = true;
+            score10 = true;
+            score13 = true;
+            score17 = true;
             canvas.removeEventListener("click", End);
          }
      } 
@@ -633,19 +653,28 @@ function setBall() {
         if (round2) {
             ctx.drawImage(r2, w/2-40, 400, 450, 200);
             ctx.textAlign = "center"; 
-            ctx.font='900 50px Comic Sans MS';
+            ctx.font='900 60px Comic Sans MS';
 
             if (strikeTar) {
-                ctx.fillText("Strike!", w+10, 475);
-                ctx.fillText("Second Go!", w+10, 522);
+                ctx.fillStyle = "blue";
+                ctx.fillText("Strike!", w+10, 484);  
+                ctx.fillStyle = "black";
                 ctx.font='900 20px Comic Sans MS';
-                ctx.fillText("You knocked down " + score + " skittles so far!", w+10, 555);
+                ctx.fillText("You knocked down " + score + " skittles so far!", w, 518);
+                ctx.fillText("Let's throw the 2nd ball now!", w+10, 552);
             }
 
             if (!strikeTar) {
-                ctx.fillText("Second Go!", w+10, 500);
-                ctx.font='900 20px Comic Sans MS';
-                ctx.fillText("You knocked down " + score + " skittles so far!", w+10, 530);
+                ctx.font='900 25px Comic Sans MS';
+                ctx.fillText("You knocked down", w, 456);
+                ctx.font='900 35px Comic Sans MS';
+                ctx.fillStyle = "blue";
+                ctx.fillText(score, w, 494);
+                ctx.font='900 25px Comic Sans MS';
+                ctx.fillStyle = "black";
+                ctx.fillText("skittles so far!", w, 520);
+                ctx.font='900 25px Comic Sans MS';
+                ctx.fillText("Let's throw the 2nd ball now!", w+4, 556);
             }
 
             r2.path = new Path2D();
@@ -661,10 +690,43 @@ function setBall() {
             ctx.fillText("Game Over!", w+10, 475);
             ctx.font='900 25px Comic Sans MS';
             ctx.fillText("You knocked down " + score + " skittles", w+10, 510);
+
+            if (score3 && score >= 1 && score <= 3) {
+                score3Aud.play();
+                score3 = false;
+            }
+
+            if (score7 && score >= 4 && score <= 7) {
+                score7Aud.play();
+                score7 = false;
+            }
+
+            if (score10 && score >= 8 && score <= 10) {
+                score10Aud.play();
+                score10 = false;
+            }
+
+            if (score13 && score >= 11 && score <= 13) {
+                score13Aud.play();
+                score13 = false;
+            }
+
+            if (score17 && score >= 14 && score <= 17) {
+                score17Aud.play();
+                score17 = false;
+            }
+
+
             ctx.fillText("Well Done!", w+10, 545);
             r3.path = new Path2D();
             r3.path.rect(w/2-40, 465, 600, 400);
             lastScreen = false;
+
+            if (wellDone) {
+            wellDoneAud.play();
+            wellDone = false;
+            }
+
             canvas.addEventListener("click", End);
         }
 
