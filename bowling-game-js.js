@@ -266,7 +266,7 @@ function showMenu() {
         ctx.fillText("Müzik", 149, 164);
     }
     
-    ctx.font = "700 30px Arial";
+    ctx.font = "700 27px Arial";
 
     ctx.drawImage(BoxMus1, 62, 190, 50, 50);
     BoxMus1.path = new Path2D();
@@ -367,7 +367,7 @@ function showMenu() {
 
 
     ctx.fillStyle = "black";
-    ctx.font = "700 30px Arial";
+    ctx.font = "700 27px Arial";
 
     ctx.drawImage(BoxBack1, 410, 190, 50, 50);
     BoxBack1.path = new Path2D();
@@ -432,13 +432,188 @@ function showMenu() {
 
     // End of Speech
 
+    // Translations
+  
+    ctx.fillStyle = "white";
+
+      ctx.drawImage(menuHead, 62, 320, 250, 50);
+
+      ctx.font = "900 25px Arial"; 
+    
+    if (En) {
+        ctx.fillText("Translations", 102, 353);
+    }
+
+    /*if (Ger) {
+        ctx.fillText("Musik", 149, 164);
+    }
+
+    if (Rom) {
+        ctx.fillText("Muzică", 149, 164);
+    }
+
+    if (Bul) {
+        ctx.fillText("Музика", 149, 164);
+    }
+
+    if (Grk) {
+        ctx.fillText("ΜΟΥΣΙΚΗ", 149, 164);
+    }
+
+    if (Tuk) {
+        ctx.fillText("Müzik", 149, 164);
+    }*/
+    
+    ctx.font = "700 27px Arial";
+    ctx.fillStyle = "black";
+
+    ctx.drawImage(BoxMus1, 62, 378, 50, 50);
+    BoxMus1.path = new Path2D();
+    BoxMus1.path.rect(62, 378, 50, 50);
+
+    ctx.fillText("English", 120, 412);
+
+    ctx.drawImage(BoxMus1, 62, 430, 50, 50);
+    BoxMus1.path = new Path2D();
+    BoxMus1.path.rect(62, 190, 50, 50);
+
+    ctx.fillText("German", 120, 465);
+
+    ctx.drawImage(BoxMus1, 62, 482, 50, 50);
+    BoxMus1.path = new Path2D();
+    BoxMus1.path.rect(62, 190, 50, 50);
+
+    ctx.fillText("Romanian", 120, 518);
+
+    ctx.drawImage(BoxMus1, 62, 534, 50, 50);
+    BoxMus1.path = new Path2D();
+    BoxMus1.path.rect(62, 190, 50, 50);
+
+    ctx.fillText("Bulgarian", 120, 571);
+
+    ctx.drawImage(BoxMus1, 62, 586, 50, 50);
+    BoxMus1.path = new Path2D();
+    BoxMus1.path.rect(62, 190, 50, 50);
+
+    ctx.fillText("Greek", 120, 621);
+
+    ctx.drawImage(BoxMus1, 62, 638, 50, 50);
+    BoxMus1.path = new Path2D();
+    BoxMus1.path.rect(62, 190, 50, 50);
+
+    ctx.fillText("Turkish", 120, 673);
+
+    
+
+    // End of Translations
+
+    // Effects
+  
+    ctx.drawImage(menuHead, 410, 320, 250, 50);
+
+    ctx.fillStyle = "white";
+
+    ctx.font = "900 25px Arial"; 
+
+    if (En) {
+        ctx.fillText("Effects", 480, 353);
+    }
+
+    /*if (Ger) {
+        ctx.fillText("Rede", 480, 164);
+    }
+
+    if (Rom) {
+        ctx.fillText("Vorbire", 480, 164);
+    }
+
+    if (Bul) {
+        ctx.fillText("Реч", 480, 164);
+    }
+
+    if (Grk) {
+        ctx.fillText("Ομιλία", 480, 164);
+    }
+    if (Tuk) {
+        ctx.fillText("Konuşma", 480, 164);
+    }*/
+
+
+    ctx.fillStyle = "black";
+    ctx.font = "700 27px Arial";
+
+    ctx.drawImage(BoxBack1, 410, 378, 50, 50);
+    BoxBack1.path = new Path2D();
+    BoxBack1.path.rect(410, 378, 50, 50);
+
+    if (colod) {  
+        ctx.drawImage(rTick1, 417, 192, 50, 40);
+    }
+
+
+
+    if (En) {
+        ctx.fillText("On", 470, 415);
+    }
+    if (Ger) {
+        ctx.fillText("An", 470, 230);
+    }
+    if (Rom) {
+        ctx.fillText("Pe", 470, 230);
+    }
+    if (Bul) {
+        ctx.fillText("Ha", 470, 230);
+    }
+    if (Grk) {
+        ctx.fillText("Επί", 470, 230);
+    }
+    if (Tuk) {
+        ctx.fillText("Açık", 470, 230);
+    }
+
+    ctx.drawImage(BoxBack2, 410, 433, 50, 50);
+    BoxBack2.path = new Path2D();
+    BoxBack2.path.rect(410, 245, 50, 50);
+
+    
+
+    if (white) {
+        ctx.drawImage(rTick1, 417, 247, 50, 40);
+    }
+    
+    if (En) {
+        ctx.fillText("Off", 470, 470);
+    }
+    if (Ger) {
+        ctx.fillText("Aus", 470, 282);
+    }
+    if (Rom) {
+        ctx.fillText("Oprit", 470, 282);
+    }
+    if (Bul) {
+        ctx.fillText("Изключено", 470, 282);
+    }
+    if (Grk) {
+        ctx.fillText("Μακριά από", 470, 282);
+    }
+    if (Tuk) {
+        ctx.fillText("Kapalı", 470, 282);
+    }
+
+    //canvas.addEventListener("click", speechtickT);
+    //canvas.addEventListener("click", speechtickF);
+
+    // End of Effects
+
+    
+
 
     ctx.textAlign = "center"; 
 
-    ctx.drawImage(cross, w-30, 645, 50, 50);
+    ctx.drawImage(cross, w-30, 675, 50, 50);
 
     cross.path = new Path2D();
-    cross.path.rect(w-30, 645, 50, 50);
+    cross.path.rect(w-30, 675, 50, 50);
 
     canvas.addEventListener("click", endMenu);
 
