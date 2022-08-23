@@ -44,41 +44,11 @@ var strikeTar = false;
 
 // Settings Menu //
 
-var setMenu = false;
-var bkMus = true;
-var colod = true;
-var white = false;
+var setMenu = false; // Game = false // setMenu = true
 
-const rTick1 = new Image();
-rTick1.src = "images/menuAssets/rTick.png";
-
-const mBack = new Image();
-mBack.src = "images/menuAssets/menuBackGr.png";
-
-const menuHead = new Image();
-menuHead.src = "images/menuAssets/header.png";
-
-const BoxMus1 = new Image();
-BoxMus1.src = "images/menuAssets/Box.png";
-
-const BoxMus2 = new Image();
-BoxMus2.src = "images/menuAssets/Box.png";
-
-const BoxBack1 = new Image();
-BoxBack1.src = "images/menuAssets/Box.png";
-
-const BoxBack2 = new Image();
-BoxBack2.src = "images/menuAssets/Box.png";
-
-
-
-const cross= new Image();
-cross.src = "images/menuAssets/cross.png";
-
-const settings = new Image();
-settings.src = "images/settings.png";
-
-////////////////////////////////
+var musicOn = true;
+var speechOn = true;
+var effectsOn = true;
 /////Translation Menu //////////
 var En = true;
 var Ger = false;
@@ -86,7 +56,67 @@ var Rom = false;
 var Bul = false;
 var Grk = false;
 var Tuk = false;
-/////////////////////////////////
+
+// red tick
+const rTick1 = new Image();
+rTick1.src = "images/menuAssets/rTick.png";
+
+// white background
+const mBack = new Image();
+mBack.src = "images/menuAssets/menuBackGr.png";
+
+// Purple Header
+const menuHead = new Image();
+menuHead.src = "images/menuAssets/header.png";
+
+// Circles
+const BoxMus1 = new Image();
+BoxMus1.src = "images/menuAssets/Box.png";
+
+const BoxMus2 = new Image();
+BoxMus2.src = "images/menuAssets/Box.png";
+
+const BoxSp1 = new Image();
+BoxSp1.src = "images/menuAssets/Box.png";
+
+const BoxSp2 = new Image();
+BoxSp2.src = "images/menuAssets/Box.png";
+
+const BoxEff1 = new Image();
+BoxEff1.src = "images/menuAssets/Box.png";
+
+const BoxEff2 = new Image();
+BoxEff2.src = "images/menuAssets/Box.png";
+
+// Trans cicles
+
+const BoxEn = new Image();
+BoxEn.src = "images/menuAssets/Box.png";
+
+const BoxGer = new Image();
+BoxGer.src = "images/menuAssets/Box.png";
+
+const BoxRom = new Image();
+BoxRom.src = "images/menuAssets/Box.png";
+
+const BoxBul = new Image();
+BoxBul.src = "images/menuAssets/Box.png";
+
+const BoxGrk = new Image();
+BoxGrk.src = "images/menuAssets/Box.png";
+
+const BoxTur = new Image();
+BoxTur.src = "images/menuAssets/Box.png";
+
+
+// Cross - return to game
+const cross= new Image();
+cross.src = "images/menuAssets/cross.png";
+
+// icon on splash screen
+const settings = new Image();
+settings.src = "images/settings.png";
+
 
 // End of Settings //
 
@@ -170,7 +200,7 @@ setBowl.src = "images/splEnd.png";
 function MustickT(e) {
     if (setMenu) {
         if (ctx.isPointInPath(BoxMus1.path, e.offsetX, e.offsetY)) {
-            bkMus=true;
+            musicOn=true;
             canvas.removeEventListener("click", MustickT);
         }
     } // setMenu
@@ -179,7 +209,7 @@ function MustickT(e) {
 function MustickF(e) {
     if (setMenu) {
         if (ctx.isPointInPath(BoxMus2.path, e.offsetX, e.offsetY)) {
-            bkMus=false;
+            musicOn=false;
             canvas.removeEventListener("click", MustickF);
         }
     } // setMenu
@@ -277,7 +307,7 @@ function showMenu() {
     ctx.fillStyle = "black";
     ctx.globalAlpha = 1.0;
 
-    if (bkMus) {
+    if (musicOn) {
         ctx.drawImage(rTick1, 67, 192, 50, 40);
     }
 
@@ -305,7 +335,7 @@ function showMenu() {
     BoxMus2.path = new Path2D();
     BoxMus2.path.rect(62, 245, 50, 50);
 
-    if (!bkMus) {
+    if (!musicOn) {
         ctx.drawImage(rTick1, 67, 247, 50, 40);
     }
 
@@ -371,11 +401,11 @@ function showMenu() {
     ctx.fillStyle = "black";
     ctx.font = "700 27px Arial";
 
-    ctx.drawImage(BoxBack1, 410, 190, 50, 50);
-    BoxBack1.path = new Path2D();
-    BoxBack1.path.rect(410, 190, 50, 50);
+    ctx.drawImage(BoxSp1, 410, 190, 50, 50);
+    BoxSp1.path = new Path2D();
+    BoxSp1.path.rect(410, 190, 50, 50);
 
-    if (colod) {  
+    if (speechOn) {  
         ctx.drawImage(rTick1, 417, 192, 50, 40);
     }
 
@@ -400,13 +430,13 @@ function showMenu() {
         ctx.fillText("Açık", 470, 230);
     }
 
-    ctx.drawImage(BoxBack2, 410, 245, 50, 50);
-    BoxBack2.path = new Path2D();
-    BoxBack2.path.rect(410, 245, 50, 50);
+    ctx.drawImage(BoxSp2, 410, 245, 50, 50);
+    BoxSp2.path = new Path2D();
+    BoxSp2.path.rect(410, 245, 50, 50);
 
     
 
-    if (white) {
+    if (!speechOn) {
         ctx.drawImage(rTick1, 417, 247, 50, 40);
     }
     
@@ -429,8 +459,8 @@ function showMenu() {
         ctx.fillText("Kapalı", 470, 282);
     }
 
-    //canvas.addEventListener("click", speechtickT);
-    //canvas.addEventListener("click", speechtickF);
+    //canvas.addEventListener("click", speechT);
+    //canvas.addEventListener("click", speechF);
 
     // End of Speech
 
@@ -469,39 +499,43 @@ function showMenu() {
     ctx.font = "700 27px Arial";
     ctx.fillStyle = "black";
 
-    ctx.drawImage(BoxMus1, 62, 378, 50, 50);
-    BoxMus1.path = new Path2D();
-    BoxMus1.path.rect(62, 378, 50, 50);
+    ctx.drawImage(BoxEn, 62, 378, 50, 50);
+    BoxEn.path = new Path2D();
+    BoxEn.path.rect(62, 378, 50, 50);
+
+    if (En) {
+        ctx.drawImage(rTick1, 67, 379, 50, 40);
+    }
 
     ctx.fillText("English", 120, 412);
 
-    ctx.drawImage(BoxMus1, 62, 430, 50, 50);
-    BoxMus1.path = new Path2D();
-    BoxMus1.path.rect(62, 190, 50, 50);
+    ctx.drawImage(BoxGer, 62, 430, 50, 50);
+    BoxGer.path = new Path2D();
+    BoxGer.path.rect(62, 190, 50, 50);
 
     ctx.fillText("German", 120, 465);
 
-    ctx.drawImage(BoxMus1, 62, 482, 50, 50);
-    BoxMus1.path = new Path2D();
-    BoxMus1.path.rect(62, 190, 50, 50);
+    ctx.drawImage(BoxRom, 62, 482, 50, 50);
+    BoxRom.path = new Path2D();
+    BoxRom.path.rect(62, 190, 50, 50);
 
     ctx.fillText("Romanian", 120, 518);
 
-    ctx.drawImage(BoxMus1, 62, 534, 50, 50);
-    BoxMus1.path = new Path2D();
-    BoxMus1.path.rect(62, 190, 50, 50);
+    ctx.drawImage(BoxBul, 62, 534, 50, 50);
+    BoxBul.path = new Path2D();
+    BoxBul.path.rect(62, 190, 50, 50);
 
     ctx.fillText("Bulgarian", 120, 571);
 
-    ctx.drawImage(BoxMus1, 62, 586, 50, 50);
-    BoxMus1.path = new Path2D();
-    BoxMus1.path.rect(62, 190, 50, 50);
+    ctx.drawImage(BoxGrk, 62, 586, 50, 50);
+    BoxGrk.path = new Path2D();
+    BoxGrk.path.rect(62, 190, 50, 50);
 
     ctx.fillText("Greek", 120, 621);
 
-    ctx.drawImage(BoxMus1, 62, 638, 50, 50);
-    BoxMus1.path = new Path2D();
-    BoxMus1.path.rect(62, 190, 50, 50);
+    ctx.drawImage(BoxTur, 62, 638, 50, 50);
+    BoxTur.path = new Path2D();
+    BoxTur.path.rect(62, 190, 50, 50);
 
     ctx.fillText("Turkish", 120, 673);
 
@@ -544,12 +578,12 @@ function showMenu() {
     ctx.fillStyle = "black";
     ctx.font = "700 27px Arial";
 
-    ctx.drawImage(BoxBack1, 410, 378, 50, 50);
-    BoxBack1.path = new Path2D();
-    BoxBack1.path.rect(410, 378, 50, 50);
+    ctx.drawImage(BoxEff1, 410, 378, 50, 50);
+    BoxEff1.path = new Path2D();
+    BoxEff1.path.rect(410, 378, 50, 50);
 
-    if (colod) {  
-        ctx.drawImage(rTick1, 417, 192, 50, 40);
+    if (effectsOn) {  
+        ctx.drawImage(rTick1, 416, 379, 50, 40);
     }
 
 
@@ -573,13 +607,13 @@ function showMenu() {
         ctx.fillText("Açık", 470, 230);
     }
 
-    ctx.drawImage(BoxBack2, 410, 433, 50, 50);
-    BoxBack2.path = new Path2D();
-    BoxBack2.path.rect(410, 245, 50, 50);
+    ctx.drawImage(BoxEff2, 410, 433, 50, 50);
+    BoxEff2.path = new Path2D();
+    BoxEff2.path.rect(410, 245, 50, 50);
 
     
 
-    if (white) {
+    if (!effectsOn) {
         ctx.drawImage(rTick1, 417, 247, 50, 40);
     }
     
@@ -863,12 +897,12 @@ function setBall() {
 
             if (score >= 0 && score <= 1) {
                 ctx.fillText("Better luck next time!", w+10, 510);
-                ctx.fillText("Play Again?", w+10, 545);
+                ctx.fillText("Click Here to Play Again", w+10, 545);
             }
 
             if (score > 2) {
 
-            ctx.fillText("You knocked down " + score + " skittles", w+10, 510);
+            ctx.fillText("You knocked down " + score + " skittles", w+10, 511);
 
             if (score3 && score >= 1 && score <= 3) {
                 score3Aud.play();
@@ -900,8 +934,10 @@ function setBall() {
                 wellDone = false;
                 }
 
+            ctx.font='900 20px Comic Sans MS';
 
-            ctx.fillText("Well Done!", w+10, 545);
+            ctx.fillText("Well Done! - Click Here to Play Again", w+10, 545);
+            
         }
 
             r3.path = new Path2D();
@@ -970,8 +1006,12 @@ function setBall() {
     if (pinRight) {
     if (x >= 301 && x <= 430 && y < 180) {
             pinRight = false;
-            strikeTar = false;;
-            strikeAud.play();
+            strikeTar = false;
+
+            if (speechOn) {
+                strikeAud.play();
+            }
+
             score=score+7;
         }
     }  
@@ -1043,12 +1083,12 @@ function animate() {
     
     playGame();
 
-    if (bkMus) {
+    if (musicOn) {
         music.play();
         music.volume = 0.2;
     }
     
-    if (!bkMus) {
+    if (!musicOn) {
         music.pause();
         music.currentTime = 0;
     }
