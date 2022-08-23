@@ -2,6 +2,8 @@
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 
+var clickRightTrue = true;
+
 // center text
 var w = canvas.width / 2;
 
@@ -725,15 +727,6 @@ function setBall() {
     canvas.addEventListener("click", SetBall);
 }
 
-// Right mouse button release ball //
-
-    window.addEventListener('contextmenu', (e) => {
-        clickLeft = false;
-        SetBalltrue = false;
-        bowlRse = true;
-        e.preventDefault();
-    });
-
     // 10 skittles //
 
     function pins() {
@@ -785,6 +778,9 @@ function setBall() {
             round2 = false;
             lastScreen = true;
             SetBalltrue = true;
+
+            clickRightTrue = false;
+
 
             if (strikeTar) {
                 pinLeft = true;
@@ -864,6 +860,14 @@ function setBall() {
             ctx.font='900 35px Comic Sans MS';
             ctx.fillText("Game Over!", w+10, 475);
             ctx.font='900 25px Comic Sans MS';
+
+            if (score >= 0 && score <= 1) {
+                ctx.fillText("Better luck next time!", w+10, 510);
+                ctx.fillText("Play Again?", w+10, 545);
+            }
+
+            if (score > 2) {
+
             ctx.fillText("You knocked down " + score + " skittles", w+10, 510);
 
             if (score3 && score >= 1 && score <= 3) {
@@ -891,18 +895,21 @@ function setBall() {
                 score17 = false;
             }
 
+            if (wellDone) {
+                wellDoneAud.play();
+                wellDone = false;
+                }
+
 
             ctx.fillText("Well Done!", w+10, 545);
+        }
+
             r3.path = new Path2D();
             r3.path.rect(w/2-40, 465, 600, 400);
             lastScreen = false;
-
-            if (wellDone) {
-            wellDoneAud.play();
-            wellDone = false;
-            }
-
+       
             canvas.addEventListener("click", End);
+
         }
 
     }
@@ -916,6 +923,18 @@ function setBall() {
     }
 
     function rolling() {
+
+    
+    window.addEventListener('contextmenu', (e) => {
+        if (clickRightTrue) {
+           clickLeft = false;
+           SetBalltrue = false;
+           bowlRse = true;
+           e.preventDefault();
+        }
+    });
+
+
 
     if (bowlRse) {
         ballAud.play();
@@ -1015,6 +1034,7 @@ function playGame() {
 
         if (Rolling) {
             rolling();
+            clickRightTrue = true;
         }        
     }
 }
