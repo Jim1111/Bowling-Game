@@ -218,6 +218,144 @@ function MustickF(e) {
 /////End of Mouse music Change///////////////////
 /////////////////////////////////////////////////
 
+////// speech change ///////////////////
+///////////////////////////////////////
+
+function SptickT(e) {
+    if (setMenu) {
+        if (ctx.isPointInPath(BoxSp1.path, e.offsetX, e.offsetY)) {
+            speechOn=true;
+            canvas.removeEventListener("click", SptickT);
+        }
+    } // setMenu
+}
+
+function SptickF(e) {
+    if (setMenu) {
+        if (ctx.isPointInPath(BoxSp2.path, e.offsetX, e.offsetY)) {
+            speechOn=false;
+            canvas.removeEventListener("click", SptickF);
+        }
+    } // setMenu
+}
+
+/////End of Mouse speech Change///////////////////
+/////////////////////////////////////////////////
+
+////// translate change ///////////////////
+///////////////////////////////////////
+
+function enOn(e) {
+    if (setMenu) {
+        if (ctx.isPointInPath(BoxEn.path, e.offsetX, e.offsetY)) {
+            En=true;
+            Ger=false;
+            Rom=false;
+            Bul=false;
+            Grk=false;
+            Tuk=false;
+            canvas.removeEventListener("click", enOn);
+        }
+    }
+}
+
+function gerOn(e) {
+    if (setMenu) {
+        if (ctx.isPointInPath(BoxGer.path, e.offsetX, e.offsetY)) {
+            En=false;
+            Ger=true;
+            Rom=false;
+            Bul=false;
+            Grk=false;
+            Tuk=false;
+            canvas.removeEventListener("click", gerOn);
+        }
+    }
+}
+
+function romOn(e) {
+    if (setMenu) {
+        if (ctx.isPointInPath(BoxRom.path, e.offsetX, e.offsetY)) {
+            En=false;;
+            Ger=false;
+            Rom=true;
+            Bul=false;
+            Grk=false;
+            Tuk=false;
+            canvas.removeEventListener("click", romOn);
+        }
+    }
+}
+
+function bulOn(e) {
+    if (setMenu) {
+        if (ctx.isPointInPath(BoxBul.path, e.offsetX, e.offsetY)) {
+            En=false;
+            Ger=false;
+            Rom=false;
+            Bul=true;
+            Grk=false;
+            Tuk=false;
+            canvas.removeEventListener("click", bulOn);
+        }
+    }
+}
+
+function grkOn(e) {
+    if (setMenu) {
+        if (ctx.isPointInPath(BoxGrk.path, e.offsetX, e.offsetY)) {
+            En=false;
+            Ger=false;
+            Rom=false;
+            Bul=false;
+            Grk=true;
+            Tuk=false;
+            canvas.removeEventListener("click", grkOn);
+        }
+    }
+}
+
+function turOn(e) {
+    if (setMenu) {
+        if (ctx.isPointInPath(BoxTur.path, e.offsetX, e.offsetY)) {
+            En=false;
+            Ger=false;
+            Rom=false;
+            Bul=false;
+            Grk=false;
+            Tuk=true;
+            canvas.removeEventListener("click", turOn);
+        }
+    }
+}
+
+/////End of translate speech Change///////////////////
+/////////////////////////////////////////////////
+
+////// effects change ///////////////////
+///////////////////////////////////////
+
+function effectsT(e) {
+    if (setMenu) {
+        if (ctx.isPointInPath(BoxEff1.path, e.offsetX, e.offsetY)) {
+            effectsOn=true;
+            canvas.removeEventListener("click", effectsT);
+        }
+    } // setMenu
+}
+
+function effectsF(e) {
+    if (setMenu) {
+        if (ctx.isPointInPath(BoxEff2.path, e.offsetX, e.offsetY)) {
+            effectsOn=false;
+            canvas.removeEventListener("click", effectsF);
+        }
+    } // setMenu
+}
+
+/////End of Mouse effects Change///////////////////
+/////////////////////////////////////////////////
+
 
 // End Mouse Menu and return to game //
 function endMenu(e) {
@@ -291,7 +429,7 @@ function showMenu() {
     }
 
     if (Grk) {
-        ctx.fillText("ΜΟΥΣΙΚΗ", 149, 164);
+        ctx.fillText("ΜΟΥΣΙΚΗ", 119, 164);
     }
 
     if (Tuk) {
@@ -459,8 +597,8 @@ function showMenu() {
         ctx.fillText("Kapalı", 470, 282);
     }
 
-    //canvas.addEventListener("click", speechT);
-    //canvas.addEventListener("click", speechF);
+    canvas.addEventListener("click", SptickT);
+    canvas.addEventListener("click", SptickF);
 
     // End of Speech
 
@@ -476,25 +614,25 @@ function showMenu() {
         ctx.fillText("Translations", 102, 353);
     }
 
-    /*if (Ger) {
-        ctx.fillText("Musik", 149, 164);
+    if (Ger) {
+        ctx.fillText("Übersetzungen", 84, 353);
     }
 
     if (Rom) {
-        ctx.fillText("Muzică", 149, 164);
+        ctx.fillText("Traduceri", 115, 353);
     }
 
     if (Bul) {
-        ctx.fillText("Музика", 149, 164);
+        ctx.fillText("Преводи", 115, 353);
     }
 
     if (Grk) {
-        ctx.fillText("ΜΟΥΣΙΚΗ", 149, 164);
+        ctx.fillText("Μεταφράσεις", 95, 353);
     }
 
     if (Tuk) {
-        ctx.fillText("Müzik", 149, 164);
-    }*/
+        ctx.fillText("Çeviriler", 112, 353);
+    }
     
     ctx.font = "700 27px Arial";
     ctx.fillStyle = "black";
@@ -507,40 +645,177 @@ function showMenu() {
         ctx.drawImage(rTick1, 67, 379, 50, 40);
     }
 
-    ctx.fillText("English", 120, 412);
+    if (En) {
+        ctx.fillText("English", 120, 412);
+    }
+    if (Ger) {
+        ctx.fillText("Englisch", 120, 412);
+    }
+    if (Rom) {
+        ctx.fillText("Engleză", 120, 412);
+    }
+    if (Bul) {
+        ctx.fillText("Английски", 120, 412);
+    }
+    if (Grk) {
+        ctx.fillText("Αγγλικά", 120, 412);
+    }
+    if (Tuk) {
+        ctx.fillText("ingilizce", 120, 412);
+    }
 
     ctx.drawImage(BoxGer, 62, 430, 50, 50);
     BoxGer.path = new Path2D();
-    BoxGer.path.rect(62, 190, 50, 50);
+    BoxGer.path.rect(62, 430, 50, 50);
 
-    ctx.fillText("German", 120, 465);
+    if (Ger) {
+        ctx.drawImage(rTick1, 67, 431, 50, 40);
+    }
+    
+
+    if (En) {
+        ctx.fillText("German", 120, 465);
+    }
+    if (Ger) {
+        ctx.fillText("Deutsch", 120, 465);
+    }
+    if (Rom) {
+        ctx.fillText("limba germana", 120, 465);
+    }
+    if (Bul) {
+        ctx.fillText("Немски", 120, 465);
+    }
+    if (Grk) {
+        ctx.fillText("Γερμανός", 120, 465);
+    }
+    if (Tuk) {
+        ctx.fillText("Almanca", 120, 465);
+    }
 
     ctx.drawImage(BoxRom, 62, 482, 50, 50);
     BoxRom.path = new Path2D();
-    BoxRom.path.rect(62, 190, 50, 50);
+    BoxRom.path.rect(62, 482, 50, 50);
 
-    ctx.fillText("Romanian", 120, 518);
+    if (Rom) {
+        ctx.drawImage(rTick1, 67, 483, 50, 40);
+    }
+    
+
+    if (En) {
+        ctx.fillText("Romanian", 120, 518);
+    }
+    if (Ger) {
+        ctx.fillText("rumänisch", 120, 518);
+    }
+    if (Rom) {
+        ctx.fillText("Română", 120, 518);
+    }
+    if (Bul) {
+        ctx.fillText("румънски", 120, 518);
+    }
+    if (Grk) {
+        ctx.fillText("ρουμανικός", 120, 518);
+    }
+    if (Tuk) {
+        ctx.fillText("Rumence", 120, 518);
+    }
 
     ctx.drawImage(BoxBul, 62, 534, 50, 50);
     BoxBul.path = new Path2D();
-    BoxBul.path.rect(62, 190, 50, 50);
+    BoxBul.path.rect(62, 534, 50, 50);
 
-    ctx.fillText("Bulgarian", 120, 571);
-
-    ctx.drawImage(BoxGrk, 62, 586, 50, 50);
-    BoxGrk.path = new Path2D();
-    BoxGrk.path.rect(62, 190, 50, 50);
-
-    ctx.fillText("Greek", 120, 621);
-
-    ctx.drawImage(BoxTur, 62, 638, 50, 50);
-    BoxTur.path = new Path2D();
-    BoxTur.path.rect(62, 190, 50, 50);
-
-    ctx.fillText("Turkish", 120, 673);
+    if (Bul) {
+        ctx.drawImage(rTick1, 67, 535, 50, 40);
+    }
 
     
 
+    if (En) {
+        ctx.fillText("Bulgarian", 120, 571);
+    }
+    if (Ger) {
+        ctx.fillText("bulgarisch", 120, 571);
+    }
+    if (Rom) {
+        ctx.fillText("bulgară", 120, 571);
+    }
+    if (Bul) {
+        ctx.fillText("български", 120, 571);
+    }
+    if (Grk) {
+        ctx.fillText("Βούλγαρος", 120, 571);
+    }
+    if (Tuk) {
+        ctx.fillText("Bulgarca", 120, 571);
+    }
+
+    ctx.drawImage(BoxGrk, 62, 586, 50, 50);
+    BoxGrk.path = new Path2D();
+    BoxGrk.path.rect(62, 586, 50, 50);
+
+    if (Grk) {
+        ctx.drawImage(rTick1, 67, 587, 50, 40);
+    }
+
+    if (En) {
+        ctx.fillText("Greek", 120, 621);
+    }
+    if (Ger) {
+        ctx.fillText("griechisch", 120, 621);
+    }
+    if (Rom) {
+        ctx.fillText("greacă", 120, 621);
+    }
+    if (Bul) {
+        ctx.fillText("Гръцки", 120, 621);
+    }
+    if (Grk) {
+        ctx.fillText("Ελληνικά", 120, 621);
+    }
+    if (Tuk) {
+        ctx.fillText("Yunan", 120, 621);
+    }
+
+    
+
+    ctx.drawImage(BoxTur, 62, 638, 50, 50);
+    BoxTur.path = new Path2D();
+    BoxTur.path.rect(62, 638, 50, 50);
+
+    if (Tuk) {
+        ctx.drawImage(rTick1, 67, 639, 50, 40);
+    }
+
+   
+
+    if (En) {
+        ctx.fillText("Turkish", 120, 673);
+    }
+    if (Ger) {
+        ctx.fillText("Türkisch", 120, 673);
+    }
+    if (Rom) {
+        ctx.fillText("turc", 120, 673);
+    }
+    if (Bul) {
+        ctx.fillText("Турски", 120, 673);
+    }
+    if (Grk) {
+        ctx.fillText("τούρκικος", 120, 673);
+    }
+    if (Tuk) {
+        ctx.fillText("Türk", 120, 673);
+    }
+
+    canvas.addEventListener("click", enOn);
+    canvas.addEventListener("click", gerOn);
+    canvas.addEventListener("click", romOn);
+    canvas.addEventListener("click", bulOn);
+    canvas.addEventListener("click", grkOn);
+    canvas.addEventListener("click", turOn);
+    
+
+    
     // End of Translations
 
     // Effects
@@ -555,24 +830,24 @@ function showMenu() {
         ctx.fillText("Effects", 480, 353);
     }
 
-    /*if (Ger) {
-        ctx.fillText("Rede", 480, 164);
+    if (Ger) {
+        ctx.fillText("Auswirkungen", 440, 353);
     }
 
     if (Rom) {
-        ctx.fillText("Vorbire", 480, 164);
+        ctx.fillText("Efecte", 480, 353);
     }
 
     if (Bul) {
-        ctx.fillText("Реч", 480, 164);
+        ctx.fillText("Ефекти", 480, 353);
     }
 
     if (Grk) {
-        ctx.fillText("Ομιλία", 480, 164);
+        ctx.fillText("Υπάρχοντα", 460, 353);
     }
     if (Tuk) {
-        ctx.fillText("Konuşma", 480, 164);
-    }*/
+        ctx.fillText("Etkileri", 480, 353);
+    }
 
 
     ctx.fillStyle = "black";
@@ -586,58 +861,56 @@ function showMenu() {
         ctx.drawImage(rTick1, 416, 379, 50, 40);
     }
 
-
-
     if (En) {
         ctx.fillText("On", 470, 415);
     }
     if (Ger) {
-        ctx.fillText("An", 470, 230);
+        ctx.fillText("An", 470, 415);
     }
     if (Rom) {
-        ctx.fillText("Pe", 470, 230);
+        ctx.fillText("Pe", 470, 415);
     }
     if (Bul) {
-        ctx.fillText("Ha", 470, 230);
+        ctx.fillText("Ha", 470, 415);
     }
     if (Grk) {
-        ctx.fillText("Επί", 470, 230);
+        ctx.fillText("Επί", 470, 415);
     }
     if (Tuk) {
-        ctx.fillText("Açık", 470, 230);
+        ctx.fillText("Açık", 470, 415);
     }
 
     ctx.drawImage(BoxEff2, 410, 433, 50, 50);
     BoxEff2.path = new Path2D();
-    BoxEff2.path.rect(410, 245, 50, 50);
+    BoxEff2.path.rect(410, 433, 50, 50);
 
     
 
     if (!effectsOn) {
-        ctx.drawImage(rTick1, 417, 247, 50, 40);
+        ctx.drawImage(rTick1, 417, 433, 50, 40);
     }
     
     if (En) {
         ctx.fillText("Off", 470, 470);
     }
     if (Ger) {
-        ctx.fillText("Aus", 470, 282);
+        ctx.fillText("Aus", 470, 470);
     }
     if (Rom) {
-        ctx.fillText("Oprit", 470, 282);
+        ctx.fillText("Oprit", 470, 470);
     }
     if (Bul) {
-        ctx.fillText("Изключено", 470, 282);
+        ctx.fillText("Изключено", 470, 470);
     }
     if (Grk) {
-        ctx.fillText("Μακριά από", 470, 282);
+        ctx.fillText("Μακριά από", 470, 470);
     }
     if (Tuk) {
-        ctx.fillText("Kapalı", 470, 282);
+        ctx.fillText("Kapalı", 470, 470);
     }
 
-    //canvas.addEventListener("click", speechtickT);
-    //canvas.addEventListener("click", speechtickF);
+    canvas.addEventListener("click", effectsT);
+    canvas.addEventListener("click", effectsF);
 
     // End of Effects
 
@@ -704,9 +977,14 @@ function Splash() {
 
 function InsEnd(e) {
     if (ctx.isPointInPath(insEnd.path, e.offsetX, e.offsetY)) {
-        letsGoAud.play();
+
+        if (speechOn) {
+            letsGoAud.play();
+        }
+
         insSc = false;
         gameSc = true;
+
         canvas.removeEventListener("click", InsEnd);
      }
  } 
@@ -723,7 +1001,7 @@ function Ins() {
     ctx.fillText("You can throw the ball twice", w, 310);
     ctx.fillText("See how many you can knock down!", w, 360);
 
-    if (introSp) {
+    if (introSp && speechOn) {
         introSpAud.play();
         introSp = false;
     }
@@ -758,6 +1036,7 @@ function setBall() {
     ctx.fillText("Move the position of the bowling ball", w+10, 520);
     ctx.fillText("By Left Clicking on this label", w, 550);
     ctx.fillText("Then Right Clicking to release the ball!", w+5, 580);
+    
     canvas.addEventListener("click", SetBall);
 }
 
@@ -905,34 +1184,46 @@ function setBall() {
             ctx.fillText("You knocked down " + score + " skittles", w+10, 511);
 
             if (score3 && score >= 1 && score <= 3) {
-                score3Aud.play();
-                score3 = false;
+                if (speechOn) {
+                    score3Aud.play();
+                    score3 = false;
+                }
             }
 
             if (score7 && score >= 4 && score <= 7) {
-                score7Aud.play();
-                score7 = false;
+                if (speechOn) {
+                    score7Aud.play();
+                    score7 = false;
+                }
             }
 
             if (score10 && score >= 8 && score <= 10) {
-                score10Aud.play();
-                score10 = false;
+                if (speechOn) {
+                    score10Aud.play();
+                    score10 = false;
+                }
             }
 
             if (score13 && score >= 11 && score <= 13) {
-                score13Aud.play();
-                score13 = false;
+                if (speechOn) {
+                    score13Aud.play();
+                    score13 = false;
+                }
             }
 
             if (score17 && score >= 14 && score <= 17) {
-                score17Aud.play();
-                score17 = false;
+                if (speechOn) {
+                    score17Aud.play();
+                    score17 = false;
+                }
             }
 
             if (wellDone) {
-                wellDoneAud.play();
-                wellDone = false;
+                if (speechOn) {
+                    wellDoneAud.play();
+                    wellDone = false;
                 }
+            }
 
             ctx.font='900 20px Comic Sans MS';
 
@@ -973,7 +1264,11 @@ function setBall() {
 
 
     if (bowlRse) {
-        ballAud.play();
+
+        if (effectsOn) {
+            ballAud.play();
+        }
+
         y += dy;
     }
 
@@ -981,15 +1276,19 @@ function setBall() {
     if (pinLeft && pinRight && round1) {
         if (x >= 320 && x <= 335 && y <= 180) { 
 
-            //if (introSp) {
+            if (speechOn) {
                 cheeringAud.play();
                 stikeVceAud.play();
-            //}
+            }
 
             pinLeft = false;
             pinRight = false;
             strikeTar = true;
-            strikeAud.play();
+
+            if (effectsOn) {
+                strikeAud.play();
+            }
+
             score=score+10;
         }
     }
@@ -998,7 +1297,11 @@ function setBall() {
     if (x >= 200 && x <= 300 && y < 180) {
             pinLeft = false;
             strikeTar = false;
-            strikeAud.play();
+
+            if (effectsOn) {
+                strikeAud.play();
+            }
+
             score=score+3;
         }
     }
@@ -1008,7 +1311,7 @@ function setBall() {
             pinRight = false;
             strikeTar = false;
 
-            if (speechOn) {
+            if (effectsOn) {
                 strikeAud.play();
             }
 
