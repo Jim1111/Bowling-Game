@@ -955,19 +955,105 @@ function Splash() {
     ctx.textAlign = "center";
     ctx.font='400 17px Arial';
     ctx.fillStyle = "white";
-    ctx.fillText("Settings", 640, 85);
+
+    
+    if (En) {
+        ctx.fillText("Settings", 640, 85);
+    }
+    if (Ger) {
+        ctx.fillText("Einstellungen", 640, 85);
+    }
+    if (Rom) {
+        ctx.fillText("Setări", 640, 85);
+    }
+    if (Bul) {
+        ctx.fillText("Настройки", 640, 85);
+    }
+    if (Grk) {
+        ctx.fillText("Ρυθμίσεις", 640, 85);
+    }
+    if (Tuk) {
+        ctx.fillText("Ayarlar", 640, 85);
+    }
+
 
     ctx.font='900 150px Arial';
     ctx.fillStyle = "purple";
-    ctx.fillText("Bowling", w, 245);
+
+
+    
+
+    if (En) {
+        ctx.fillText("Bowling", w, 245);
+    }
+    if (Ger) {
+        ctx.fillText("Bowling", w, 245);
+    }
+    if (Rom) {
+        ctx.fillText("Bowling", w, 245);
+    }
+    if (Bul) {
+        ctx.font='500 140px Comic Sans MS';
+        ctx.fillText("Боулинг", w, 205);
+    }
+    if (Grk) {
+        ctx.font='500 120px Comic Sans MS';
+        ctx.fillText("Μπόουλινγκ", w, 235);
+    }
+    if (Tuk) {
+        ctx.fillText("Bowling", w, 245);
+    }
+
+
     ctx.font='500 90px Comic Sans MS';
     ctx.fillStyle = "silver";
-    ctx.fillText("Game", w, 325);
+
+    
+    if (En) {
+        ctx.fillText("Game", w, 325);
+    }
+    if (Ger) {
+        ctx.fillText("Spiel", w, 325);
+    }
+    if (Rom) {
+        ctx.fillText("Joc", w, 325);
+    }
+    if (Bul) {
+        ctx.fillText("Игра", w, 325);
+    }
+    if (Grk) {
+        ctx.fillText("Παιχνίδι", w, 325);
+    }
+    if (Tuk) {
+        ctx.fillText("oyun", w, 325);
+    }
+
     ctx.fillRect(0, 450, 715, 235); 
     ctx.drawImage(splEnd, w/2-40, 465, 450, 200);
     ctx.font='900 40px Comic Sans MS';
     ctx.fillStyle = "black";
-    ctx.fillText("Start Game!", w, 575);
+ 
+    if (En) {
+        ctx.fillText("Start Game!", w, 575);
+    }
+    if (Ger) {
+        ctx.fillText("Spiel beginnen!", w, 575);
+    }
+    if (Rom) {
+        ctx.fillText("Incepe jocul!", w, 575);
+    }
+    if (Bul) {
+        ctx.fillText("Започни игра!", w, 575);
+    }
+    if (Grk) {
+        ctx.font='900 35px Arial';
+        ctx.fillText("Ξεκίνα το παιχνίδι!", w, 575);
+    }
+    if (Tuk) {
+        ctx.font='900 35px Arial';
+        ctx.fillText("Oyunu başlatmak!", w, 575);
+    }
+
     splEnd.path = new Path2D();
     splEnd.path.rect(w/2-40, 465, 450, 200);
 
@@ -995,21 +1081,100 @@ function Ins() {
     ctx.fillRect(50, 80, 616, 550);  
     ctx.fillStyle = "purple";
     ctx.font='900 90px Comic Sans MS';
-    ctx.fillText("Bowling Game", w, 180);
+
+    if (En) {
+        ctx.fillText("Bowling Game", w, 180);
+    }
+    if (Ger) {
+        ctx.fillText("Bowling Spiel", w, 180);
+    }
+    if (Rom) {
+        ctx.fillText("Bowling Joc", w, 180);
+    }
+    if (Bul) {
+        ctx.font='900 70px Comic Sans MS';
+        ctx.fillText("Боулинг Игра", w, 180);
+    }
+    if (Grk) {
+        ctx.font='900 50px Comic Sans MS';
+        ctx.fillText("Μπόουλινγκ Παιχνίδι", w, 180);
+    }
+    if (Tuk) {
+        ctx.font='900 70px Comic Sans MS';
+        ctx.fillText("Bowling oyun", w, 180);
+    }
+
     ctx.font='500 30px Comic Sans MS';
-    ctx.fillText("The game starts with 10 skittles", w, 260);
-    ctx.fillText("You can throw the ball twice", w, 310);
-    ctx.fillText("See how many you can knock down!", w, 360);
+
+    
+
+    if (En) {
+        ctx.fillText("The game starts with 10 skittles", w, 260);
+        ctx.fillText("You can throw the ball twice", w, 310);
+        ctx.fillText("See how many you can knock down!", w, 360);
+    }
+    if (Ger) {
+        ctx.fillText("Das Spiel beginnt mit 10 Kegeln", w, 260);
+        ctx.fillText("", w, 310);
+        ctx.fillText("", w, 360);
+    }
+    if (Rom) {
+        ctx.fillText("Jocul începe cu 10 skittles", w, 260);
+        ctx.fillText("", w, 310);
+        ctx.fillText("", w, 360);
+    }
+    if (Bul) {
+        ctx.fillText("Играта започва с 10 кегли", w, 260);
+        ctx.fillText("", w, 310);
+        ctx.fillText("", w, 360);
+    }
+    if (Grk) {
+        ctx.fillText("Το παιχνίδι ξεκινά με 10 κορύνες", w, 260);
+        ctx.fillText("", w, 310);
+        ctx.fillText("", w, 360);
+    }
+    if (Tuk) {
+        ctx.fillText("Oyun 10 kuka ile başlar", w, 260);
+        ctx.fillText("", w, 310);
+        ctx.fillText("", w, 360);
+    }
+
+
 
     if (introSp && speechOn) {
-        introSpAud.play();
-        introSp = false;
+        if (En) {
+            introSpAud.play();
+            introSp = false;
+        }
     }
 
     ctx.drawImage(insEnd, w/2-40, 400, 450, 200);
     ctx.font='900 50px Comic Sans MS';
     ctx.fillStyle = "black";
-    ctx.fillText("Let's Go!", w, 520);
+    
+    
+    if (En) {
+        ctx.fillText("Let's Go!", w, 520);
+    }
+    if (Ger) {
+        ctx.font='900 35px Arial';
+        ctx.fillText("Lass uns gehen!", w, 520);
+    }
+    if (Rom) {
+        ctx.font='900 35px Arial';
+        ctx.fillText("Sa mergem!", w, 520);
+    }
+    if (Bul) {
+        ctx.fillText("Да тръгваме!", w, 520);
+    }
+    if (Grk) {
+        ctx.font='900 35px Arial';
+        ctx.fillText("Πάμε!", w, 520);
+    }
+    if (Tuk) {
+        ctx.font='900 35px Arial';
+        ctx.fillText("Hadi gidelim!", w, 520);
+    }
 
     insEnd.path = new Path2D();
     insEnd.path.rect(w/2-40, 465, 450, 200);
