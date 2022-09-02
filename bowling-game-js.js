@@ -126,10 +126,27 @@ var ballAud = new Audio("audio/bowling-ball.mp3");
 var strikeAud = new Audio("audio/strike.mp3");
 var music = new Audio("audio/music.mp3");
 var introSpAud = new Audio("audio/introSpAud.mp3");
+
 var letsGoAud = new Audio("audio/letsGoAud.mp3");
+var letsGoAudGer = new Audio("audio/letsGoAudGer.mp3");
+
+var letsGoAudRom = new Audio("audio/letsGoAudRom.mp3");
+var letsGoAudBul = new Audio("audio/letsGoAudBul.mp3");
+var letsGoAudGrk = new Audio("audio/letsGoAudGrk.mp3");
+var letsGoAudTur = new Audio("audio/letsGoAudTur.mp3");
+
 var cheeringAud = new Audio("audio/cheering.mp3");
+
+
 var stikeVceAud = new Audio("audio/strikeVoice.mp3");
+var stikeVceAudGer = new Audio("audio/strikeVoiceGer.mp3");
+var stikeVceAudRom = new Audio("audio/strikeVoiceRom.mp3");
+var stikeVceAudBul = new Audio("audio/strikeVoiceBul.mp3");
+var stikeVceAudGrk = new Audio("audio/strikeVoiceGrk.mp3");
+var stikeVceAudTur = new Audio("audio/strikeVoiceTur.mp3");
+
 var wellDoneAud = new Audio("audio/wellDone.mp3");
+var wellDoneAudGer = new Audio("audio/wellDoneGer.mp3");
 
 var score3Aud = new Audio("audio/score3.mp3");
 var score7Aud = new Audio("audio/score7.mp3");
@@ -1064,8 +1081,25 @@ function Splash() {
 function InsEnd(e) {
     if (ctx.isPointInPath(insEnd.path, e.offsetX, e.offsetY)) {
 
-        if (speechOn) {
-            letsGoAud.play();
+        if (speechOn) {         
+            if (En) {
+                letsGoAud.play();
+            }
+            if (Ger) {
+                letsGoAudGer.play();
+            }
+            if (Rom) {
+                letsGoAudRom.play();
+            }
+            if (Bul) {
+                letsGoAudBul.play();
+            }
+            if (Grk) {
+                letsGoAudGrk.play();
+            }
+            if (Tuk) {
+                letsGoAudTur.play();
+            }
         }
 
         insSc = false;
@@ -1559,45 +1593,147 @@ function setBall() {
             if (Tuk) {
                 ctx.fillText("sen düşürdün " + score + " kukalar ", w+10, 511);
             }
-
+                
             if (score3 && score >= 1 && score <= 3) {
-                if (speechOn) {
-                    score3Aud.play();
+                if (speechOn) {               
+                    if (En) {
+                        score3Aud.play();
+                    }
+                    if (Ger) {
+                        //score3Aud.play();
+                    }
+                    if (Rom) {
+                        //score3Aud.play();
+                    }
+                    if (Bul) {
+                        //score3Aud.play();
+                    }
+                    if (Grk) {
+                        //score3Aud.play();
+                    }
+                    if (Tuk) {
+                        //score3Aud.play();
+                    }
                     score3 = false;
                 }
             }
 
             if (score7 && score >= 4 && score <= 7) {
-                if (speechOn) {
-                    score7Aud.play();
+                if (speechOn) {         
+                    if (En) {
+                        score7Aud.play();
+                    }
+                    if (Ger) {
+                        //score3Aud.play();
+                    }
+                    if (Rom) {
+                        //score3Aud.play();
+                    }
+                    if (Bul) {
+                        //score3Aud.play();
+                    }
+                    if (Grk) {
+                        //score3Aud.play();
+                    }
+                    if (Tuk) {
+                        //score3Aud.play();
+                    }
                     score7 = false;
                 }
             }
 
             if (score10 && score >= 8 && score <= 10) {
                 if (speechOn) {
-                    score10Aud.play();
+                    if (En) {
+                        score10Aud.play();
+                    }
+                    if (Ger) {
+                        //score3Aud.play();
+                    }
+                    if (Rom) {
+                        //score3Aud.play();
+                    }
+                    if (Bul) {
+                        //score3Aud.play();
+                    }
+                    if (Grk) {
+                        //score3Aud.play();
+                    }
+                    if (Tuk) {
+                        //score3Aud.play();
+                    }
                     score10 = false;
                 }
             }
 
             if (score13 && score >= 11 && score <= 13) {
-                if (speechOn) {
-                    score13Aud.play();
+                if (speechOn) {                
+                    if (En) {
+                        score13Aud.play();
+                    }
+                    if (Ger) {
+                        //score3Aud.play();
+                    }
+                    if (Rom) {
+                        //score3Aud.play();
+                    }
+                    if (Bul) {
+                        //score3Aud.play();
+                    }
+                    if (Grk) {
+                        //score3Aud.play();
+                    }
+                    if (Tuk) {
+                        //score3Aud.play();
+                    }
                     score13 = false;
                 }
             }
 
             if (score17 && score >= 14 && score <= 17) {
                 if (speechOn) {
-                    score17Aud.play();
+                    if (En) {
+                        score17Aud.play();
+                    }
+                    if (Ger) {
+                        //score3Aud.play();
+                    }
+                    if (Rom) {
+                        //score3Aud.play();
+                    }
+                    if (Bul) {
+                        //score3Aud.play();
+                    }
+                    if (Grk) {
+                        //score3Aud.play();
+                    }
+                    if (Tuk) {
+                        //score3Aud.play();
+                    }
                     score17 = false;
                 }
             }
 
             if (wellDone) {
                 if (speechOn) {
-                    wellDoneAud.play();
+                    if (En) {
+                        wellDoneAud.play();
+                    }
+                    if (Ger) {
+                        wellDoneAudGer.play();
+                    }
+                    if (Rom) {
+                        //score3Aud.play();
+                    }
+                    if (Bul) {
+                        //score3Aud.play();
+                    }
+                    if (Grk) {
+                        //score3Aud.play();
+                    }
+                    if (Tuk) {
+                        //score3Aud.play();
+                    }
                     wellDone = false;
                 }
             }
@@ -1627,7 +1763,7 @@ function setBall() {
         }
 
             r3.path = new Path2D();
-            r3.path.rect(w/2-40, 465, 600, 400);
+            r3.path.rect(w/2-40, 400, 700, 700);
             lastScreen = false;
        
             canvas.addEventListener("click", End);
@@ -1697,7 +1833,26 @@ function setBall() {
 
             if (speechOn) {
                 cheeringAud.play();
-                stikeVceAud.play();
+                
+                if (En) {
+                    stikeVceAud.play();
+                }
+                if (Ger) {
+                    stikeVceAudGer.play();
+                }
+                if (Rom) {
+                    stikeVceAudRom.play();
+                }
+                if (Bul) {
+                    stikeVceAudBul.play();
+                }
+                if (Grk) {
+                    stikeVceAudGrk.play();
+                }
+                if (Tuk) {
+                    stikeVceAudTur.play();
+                }
+
             }
 
             pinLeft = false;
