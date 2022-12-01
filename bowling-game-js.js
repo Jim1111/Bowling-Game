@@ -7,6 +7,16 @@ var clickRightTrue = true;
 // center text
 var w = canvas.width / 2;
 
+const keys = []; // keyboard operations
+
+window.addEventListener("keydown", function(e){
+    keys[e.keyCode] = true;
+});
+
+window.addEventListener("keyup", function(e){
+    delete keys[e.keyCode];
+});
+
 var splashSc = true;
 var insSc = false;
 var gameSc = false;
@@ -957,6 +967,15 @@ function SplashEnd(e) {
         }
     }
 
+    function SplashEndKey(e) {
+         // Keyboard controls
+        if (keys[32]) {
+            splashSc = false;
+            insSc = true;
+            removeEventListener("keydown", SplashEndKey);
+        }
+     }
+
 function settingsOpen(e) {
     if (ctx.isPointInPath(settings.path, e.offsetX, e.offsetY)) {
         setMenu=true;
@@ -1047,11 +1066,13 @@ function Splash() {
 
     ctx.fillRect(0, 450, 715, 235); 
     ctx.drawImage(splEnd, w/2-40, 465, 450, 200);
-    ctx.font='900 40px Comic Sans MS';
+    ctx.font='900 50px Comic Sans MS';
     ctx.fillStyle = "black";
  
     if (En) {
-        ctx.fillText("Start Game!", w, 575);
+        ctx.fillText("Start Game!", w, 565);
+        ctx.font='900 20px Comic Sans MS';
+        ctx.fillText("Left Click or Press the Spacebar", w, 605);
     }
     if (Ger) {
         ctx.fillText("Spiel beginnen!", w, 575);
@@ -1074,6 +1095,15 @@ function Splash() {
     splEnd.path = new Path2D();
     splEnd.path.rect(w/2-40, 465, 450, 200);
 
+
+
+
+   
+
+
+
+
+    addEventListener("keydown", SplashEndKey, false);
     canvas.addEventListener("click", settingsOpen);
     canvas.addEventListener("click", SplashEnd);
 }
@@ -1108,6 +1138,38 @@ function InsEnd(e) {
         canvas.removeEventListener("click", InsEnd);
      }
  } 
+
+ function InsEndKey(e) {
+    // Keyboard controls
+    if (keys[32]) {
+        splashSc = false;
+        insSc = false;
+
+        if (speechOn) {         
+            if (En) {
+                letsGoAud.play();
+            }
+            if (Ger) {
+                letsGoAudGer.play();
+            }
+            if (Rom) {
+                letsGoAudRom.play();
+            }
+            if (Bul) {
+                letsGoAudBul.play();
+            }
+            if (Grk) {
+                letsGoAudGrk.play();
+            }
+            if (Tuk) {
+                letsGoAudTur.play();
+            }
+        }
+        
+        gameSc = true;
+        removeEventListener("keydown", InsEndKey);
+     }
+ }
 
 function Ins() {
     ctx.textAlign = "center";
@@ -1185,12 +1247,14 @@ function Ins() {
     }
 
     ctx.drawImage(insEnd, w/2-40, 400, 450, 200);
-    ctx.font='900 50px Comic Sans MS';
+    ctx.font='900 60px Comic Sans MS';
     ctx.fillStyle = "black";
     
     
     if (En) {
-        ctx.fillText("Let's Go!", w, 520);
+        ctx.fillText("Let's Go!", w, 510);
+        ctx.font='900 20px Comic Sans MS';
+        ctx.fillText("Left Click or Press the Spacebar", w, 545);
     }
     if (Ger) {
         ctx.font='900 35px Arial';
@@ -1212,8 +1276,12 @@ function Ins() {
         ctx.fillText("Hadi gidelim!", w, 510);
     }
 
+    
+
     insEnd.path = new Path2D();
     insEnd.path.rect(w/2-40, 465, 450, 200);
+
+    addEventListener("keydown", InsEndKey, false);
     canvas.addEventListener("click", InsEnd);
 }
 
@@ -1229,19 +1297,35 @@ function SetBall(e) {
     }
 }
 
+/////////////////////////////
+function SetBallKey(e) {
+    // Keyboard controls
+    if (keys[32]) {
+        x = x+20;
+        if (x >= 500) {
+            x=-dx+150;
+        }
+        Rolling = true;
+        removeEventListener("keydown", SetBallKey);
+     }
+}
+/////////////////////////////////
+
+
 function setBall() {
-    ctx.drawImage(setBowl, w/2-65, 400, 495, 260);
+    ctx.drawImage(setBowl, w/2-65, 380, 495, 290);
     setBowl.path = new Path2D();
     setBowl.path.rect(w/2-10, 350, 600, 400);
-    ctx.font='900 25px Comic Sans MS';   
+    ctx.font='900 20px Comic Sans MS';   
 
     if (En) {
-        ctx.fillText("Move the position of the", w+10, 470);
-        ctx.fillText("bowling ball by Left Clicking", w+10, 500);
-        ctx.fillText("on this label", w, 530);
+        ctx.fillText("Move the position of the bowling ball by", w+10, 460);
+        ctx.fillText("Left Clicking or pressing the Spacebar", w+10, 490);
+        ctx.fillText("on this label", w, 520);
 
-        ctx.fillText("Then Right Clicking to", w+5, 575);
-        ctx.fillText("to release the ball!", w+5, 605);
+        ctx.fillText("Then Right Clicking or", w+5, 562);
+        ctx.fillText("pressing the Enter Key to", w+5, 587);
+        ctx.fillText("to release the ball!", w+5, 612);
     }
     if (Ger) {
         ctx.fillText("Verschieben Sie die Position der", w+10, 470);
@@ -1286,6 +1370,7 @@ function setBall() {
         ctx.fillText("topu serbest bırakmak için!", w+5, 605);
     }
     
+    addEventListener("keydown", SetBallKey);
     canvas.addEventListener("click", SetBall);
 }
 
@@ -1351,7 +1436,39 @@ function setBall() {
 
             canvas.removeEventListener("click", Round2);
          }
-     } 
+     }
+
+
+
+
+
+     //////////////////////////////////////////////////////////////////
+     function Round2Key(e) {
+        if (keys[32]) {
+            clickLeft = true;
+            x = 150;
+            y = 660;
+            bowlRse = false;
+            round2 = false;
+            lastScreen = true;
+            SetBalltrue = true;
+
+            clickRightTrue = false;
+
+
+            if (strikeTar) {
+                pinLeft = true;
+                pinRight = true;
+            }
+
+            canvas.removeEventListener("keydown", Round2Key);
+     }
+    }
+     //////////////////////////////////////////////////////////////////////
+
+
+
+
 
      function End(e) {
         if (ctx.isPointInPath(r3.path, e.offsetX, e.offsetY)) {
@@ -1384,7 +1501,7 @@ function setBall() {
     function rounds() {
 
         if (round2) {
-            ctx.drawImage(r2, w/2-40, 400, 450, 200);
+            ctx.drawImage(r2, w/2-40, 380, 440, 250);
             ctx.textAlign = "center"; 
             ctx.font='900 60px Comic Sans MS';
 
@@ -1417,7 +1534,8 @@ function setBall() {
 
                 if (En) {
                     ctx.fillText("You knocked down " + score + " skittles so far!", w, 518);
-                    ctx.fillText("Let's throw the 2nd ball now!", w+10, 552);     
+                    ctx.fillText("Let's throw the 2nd ball now", w+10, 548);
+                    ctx.fillText("Left Click or Press the Spacebar!", w+10, 578);
                 }
                 if (Ger) {
                     ctx.fillText("Du hast zugeschlagen " + score + " Kegel bisher!", w, 518);
@@ -1491,7 +1609,8 @@ function setBall() {
                 ctx.font='900 19px Comic Sans MS';
                 
                 if (En) {
-                    ctx.fillText("Let's throw the 2nd ball now!", w+4, 556);
+                    ctx.fillText("Let's throw the 2nd ball now!", w+4, 555);
+                    ctx.fillText("Left Click or Press the Spacebar", w+4, 580);
                 }
                 if (Ger) {
                     ctx.fillText("Lass uns jetzt den 2. Ball werfen!", w+4, 556); 
@@ -1514,6 +1633,7 @@ function setBall() {
             r2.path.rect(w/2-40, 465, 450, 200);
             sec = false;
             canvas.addEventListener("click", Round2);
+            addEventListener("keydown", Round2Key);
         }
 
         if (end) {
@@ -1804,16 +1924,29 @@ function setBall() {
 
     }
 
-    function rolling() {
+function rolling() {
 
-    
+/////////////////////////////////////////
+
+// Keyboard controls
+if (keys[13]) {     
+    clickLeft = false;
+    SetBalltrue = false;
+    bowlRse = true;
+ }
+
+//////////////////////////////////////////////////
+
     window.addEventListener('contextmenu', (e) => {
         if (clickRightTrue) {
+        
            clickLeft = false;
            SetBalltrue = false;
            bowlRse = true;
            e.preventDefault();
+           
         }
+        
     });
 
 
