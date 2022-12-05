@@ -1281,7 +1281,7 @@ function Ins() {
     insEnd.path = new Path2D();
     insEnd.path.rect(w/2-40, 465, 450, 200);
 
-    addEventListener("keydown", InsEndKey, false);
+    addEventListener("keydown", InsEndKey);
     canvas.addEventListener("click", InsEnd);
 }
 
@@ -1298,7 +1298,7 @@ function SetBall(e) {
 }
 
 /////////////////////////////
-function SetBallKey(e) {
+function SetBallKey() {
     // Keyboard controls
     if (keys[32]) {
         x = x+20;
@@ -1443,7 +1443,7 @@ function setBall() {
 
 
      //////////////////////////////////////////////////////////////////
-     function Round2Key(e) {
+     function Round2Key() {
         if (keys[32]) {
             clickLeft = true;
             x = 150;
@@ -1461,7 +1461,7 @@ function setBall() {
                 pinRight = true;
             }
 
-            canvas.removeEventListener("keydown", Round2Key);
+            removeEventListener("keydown", Round2Key);
      }
     }
      //////////////////////////////////////////////////////////////////////
@@ -1494,6 +1494,33 @@ function setBall() {
             score17 = true;
             canvas.removeEventListener("click", End);
          }
+     }
+
+
+     function EndKey() {
+        if (keys[32]) {
+            clickLeft = true;
+            x = 150;
+            y = 660;
+            sec = true;
+            bowlRse = false;
+            pinLeft = true;
+            pinRight = true;
+            gameSc = false;
+            round1 = true;
+            end = false;
+            lastScreen = false;
+            SetBalltrue = true;
+            splashSc = true;
+            score=0;
+            wellDone = true;
+            score3 = true;
+            score7 = true;
+            score10 = true;
+            score13 = true;
+            score17 = true;
+            removeEventListener("keydown", EndKey);
+        }
      } 
 
      
@@ -1586,6 +1613,80 @@ function setBall() {
                 ctx.fillText(score, w, 494);
                 ctx.font='900 25px Comic Sans MS';
                 ctx.fillStyle = "black";
+
+                /////////////////////////////////////
+                if (score3 && score >= 1 && score <= 3) {
+                    if (speechOn) {               
+                        if (En) {
+                            score3Aud.play();
+                        }
+                        if (Ger) {
+                            //score3Aud.play();
+                        }
+                        if (Rom) {
+                            //score3Aud.play();
+                        }
+                        if (Bul) {
+                            //score3Aud.play();
+                        }
+                        if (Grk) {
+                            //score3Aud.play();
+                        }
+                        if (Tuk) {
+                            //score3Aud.play();
+                        }
+                        score3 = false;
+                    }
+                }
+
+                if (score7 && score >= 4 && score <= 7) {
+                    if (speechOn) {         
+                        if (En) {
+                            score7Aud.play();
+                        }
+                        if (Ger) {
+                            //score3Aud.play();
+                        }
+                        if (Rom) {
+                            //score3Aud.play();
+                        }
+                        if (Bul) {
+                            //score3Aud.play();
+                        }
+                        if (Grk) {
+                            //score3Aud.play();
+                        }
+                        if (Tuk) {
+                            //score3Aud.play();
+                        }
+                        score7 = false;
+                    }
+                }
+    
+                if (score10 && score >= 8 && score <= 10) {
+                    if (speechOn) {
+                        if (En) {
+                            score10Aud.play();
+                        }
+                        if (Ger) {
+                            //score3Aud.play();
+                        }
+                        if (Rom) {
+                            //score3Aud.play();
+                        }
+                        if (Bul) {
+                            //score3Aud.play();
+                        }
+                        if (Grk) {
+                            //score3Aud.play();
+                        }
+                        if (Tuk) {
+                            //score3Aud.play();
+                        }
+                        score10 = false;
+                    }
+                }
+                /////////////////////////////////////
                 
                 if (En) {
                     ctx.fillText("skittles so far!", w, 520); 
@@ -1637,7 +1738,11 @@ function setBall() {
         }
 
         if (end) {
-            ctx.drawImage(r3, w/2-40, 400, 450, 200);
+
+            
+
+
+            ctx.drawImage(r3, w/2-40, 400, 450, 250);
             ctx.textAlign = "center"; 
             ctx.font='900 35px Comic Sans MS';
 
@@ -1665,7 +1770,7 @@ function setBall() {
                 if (En) {
                     ctx.font='900 25px Comic Sans MS';
                     ctx.fillText("Better luck next time!", w+10, 510);
-                    ctx.fillText("Click Here to Play Again", w+10, 545);
+                    ctx.fillText("Left Click or Press the Spacebar to Play Again", w+10, 545);
                 }
                 if (Ger) {
                     ctx.fillText("Viel Glück beim nächsten Mal!", w+10, 510);
@@ -1713,9 +1818,10 @@ function setBall() {
             if (Tuk) {
                 ctx.fillText("sen düşürdün " + score + " kukalar ", w+10, 511);
             }
-                
+              
+        
             if (score3 && score >= 1 && score <= 3) {
-                if (speechOn) {               
+                if (speechOn) {             
                     if (En) {
                         score3Aud.play();
                     }
@@ -1862,7 +1968,9 @@ function setBall() {
 
             if (En) {
                 ctx.font='900 20px Comic Sans MS';
-                ctx.fillText("Well Done! - Click Here to Play Again", w+10, 545);
+                ctx.fillText("Well Done! - Left Click", w+10, 545);
+                ctx.fillText("Or Press the Spacebar", w+10, 570);
+                ctx.fillText("To Play Again!", w+10, 595);
             }
             if (Ger) {
                 ctx.fillText("Gut erledigt! - Klicken Sie hier, um erneut zu spielen", w+10, 545);
@@ -1887,6 +1995,7 @@ function setBall() {
             lastScreen = false;
        
             canvas.addEventListener("click", End);
+            addEventListener("keydown", EndKey);
 
         }
 
