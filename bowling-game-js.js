@@ -4,6 +4,22 @@ const ctx = canvas.getContext('2d');
 
 var clickRightTrue = true;
 
+var settingsKeyIns = false;
+
+var KeyboardMenu = false;
+var KeyMenu1 = false;
+var KeyMenu2 = false;
+var KeyMenu3 = false;
+var KeyMenu4 = false;
+var KeyMenu5 = false;
+var KeyMenu6 = false;
+var KeyMenu7 = false;
+var KeyMenu8 = false;
+var KeyMenu9 = false;
+var KeyMenu10 = false;
+var KeyMenu11 = false;
+var KeyMenu12 = false;
+
 // center text
 var w = canvas.width / 2;
 
@@ -48,6 +64,21 @@ var dy = -2;
 var pinLeft = true;
 var pinRight = true;
 var strikeTar = false;
+
+var MSw1 = true;                        //
+var MSw2 = false;                       //
+var MSw3 = false;                       //
+var MSw4 = false;                       //
+var MSw5 = false;                       //
+var MSw6 = false;                       //                                        
+var MSw7 = false;                       // 
+var MSw8 = false;                       //
+var MSw9 = false;  
+var MSw10 = false; 
+var MSw11 = false; 
+var MSw12 = false; 
+var MSw13 = false; 
+
 
 
 
@@ -399,13 +430,121 @@ function endMenu(e) {
 }
 
 
+
+
+
+
+
+if (setMenu) {
+    if (keys[13] && KeyMenu1) {
+        musicOn=true;
+    }
+
+    if (keys[13] && KeyMenu2) {
+        musicOn=false;
+    }
+
+    /*
+    if (keys[13] && KeyMenu3 && MSw3) {
+        colod = true;
+        white = false;
+    }
+
+    if (keys[13] && KeyMenu4 && MSw4) {
+        colod = false;
+        white = true;
+    }
+
+    if (keys[13] && KeyMenu5 && MSw5) {
+        togSpeech=true;
+    }
+
+    if (keys[13] && KeyMenu6 && MSw6) {
+        togSpeech=false;
+    }
+
+    if (keys[13] && KeyMenu7 && MSw7) {
+        togQs1 = true;
+        togQs2 = false;
+        togQs3 = false;
+    }
+
+    if (keys[13] && KeyMenu8 && MSw8) {
+        togQs2 = true;
+        togQs1 = false;
+        togQs3 = false;
+    }
+
+    if (keys[13] && KeyMenu9 && MSw9) {
+        togQs3 = true;
+        togQs1 = false;
+        togQs2 = false;
+    }
+    */
+}
+
+
+function switchKeysM1(e) {
+    if (KeyboardMenu) {
+    if ((keys[32]) && KeyMenu1 && MSw1) {
+        KeyMenu1 = false;
+        KeyMenu2 = true;
+        KeyMenu3 = false;
+        KeyMenu4 = false;
+        KeyMenu5 = false;
+        KeyMenu6 = false;
+        MSw1 = false;
+        MSw2 = true;
+        MSw3 = false;
+        MSw4 = false;
+        MSw5 = false;
+        MSw6 = false;
+        removeEventListener("keydown", switchKeysM1, false);
+    }
+    }
+}
+
+function switchKeysM2(e) {
+    if (KeyboardMenu) {
+    if ((keys[32]) && KeyMenu2 && MSw2) {
+    KeyMenu1 = false;
+    KeyMenu2 = false;
+    KeyMenu3 = true;
+    KeyMenu4 = false;
+    KeyMenu5 = false;
+    KeyMenu6 = false;
+    MSw1 = false;
+    MSw2 = false;
+    MSw3 = true;
+    MSw4 = false;
+    MSw5 = false; 
+    MSw6 = false; 
+    removeEventListener("keydown", switchKeysM2, false);
+    }
+    }
+}
+
+
+function endInsKey() {
+    if (keys[32]) {
+        settingsKeyIns = false;
+        removeEventListener("keydown", endInsKey);
+    }
+}
+
+
+
+
+
 function showMenu() {
     if (setMenu) {
+
+        
 
       ctx.fillStyle = "black";
   
       ctx.drawImage(mBack, 0, 0, canvas.width, canvas.height);
-  
+
       ctx.globalAlpha = 1.0; 
       ctx.textAlign = "center"; 
       ctx.font = "100 80px Impact, fantasy";
@@ -429,15 +568,55 @@ function showMenu() {
         ctx.fillText("Ayarlar", w, 100);
       }
 
-      
+      if (settingsKeyIns) {
+          ctx.globalAlpha = 1.0;
+          ctx.fillStyle = "purple";
+          ctx.fillRect(111, 140, 500, 450);
+          ctx.textAlign = "center"; 
+
+          ctx.fillStyle = "black";
+          ctx.font = "900 50px Arial"; 
+          ctx.fillText("Instructions", w, 200);
+          ctx.font = "900 30px Arial"; 
+          ctx.fillStyle = "white";
+          ctx.fillText("Press the Spacear to tab", w, 280);
+          ctx.fillText("between the options", w, 320);
+          ctx.fillText("Then press the", w, 400);
+          ctx.fillText("enter key to select", w, 440);
+          ctx.fillStyle = "black";
+          ctx.fillText("Press the spacebar", w, 520);
+          ctx.fillText("to continue", w, 560);
+
+    addEventListener("keydown", endInsKey);
+
+      }
+  
+      if (!settingsKeyIns) {
 
       ctx.textAlign = "left";
+
+      ///////////////////////////////////////////////
+      if (KeyboardMenu) {
+      if (KeyMenu1) {
+      ctx.globalAlpha = 0.3;
+      ctx.fillStyle = "Blue";
+      ctx.fillRect(60, 190, 257, 50);
+      ctx.globalAlpha = 1.0;
+      }
+    }
+      ///////////////////////////////////////////////
+
 
       ctx.fillStyle = "white";
 
       ctx.drawImage(menuHead, 62, 130, 250, 50);
 
       ctx.font = "900 25px Arial"; 
+
+
+
+
+
     
     if (En) {
         ctx.fillText("Music", 149, 164);
@@ -463,12 +642,24 @@ function showMenu() {
         ctx.fillText("Müzik", 149, 164);
     }
     
+    ctx.fillStyle = "black";
     ctx.font = "700 27px Arial";
 
     ctx.drawImage(BoxMus1, 62, 190, 50, 50);
     BoxMus1.path = new Path2D();
     BoxMus1.path.rect(62, 190, 50, 50);
 
+    
+    ///////////////////////////////////////////////
+    if (KeyboardMenu) {
+    if (KeyMenu2) {
+    ctx.globalAlpha = 0.3;
+    ctx.fillStyle = "Blue";
+    ctx.fillRect(60, 245, 257, 50);
+    }
+}
+    ///////////////////////////////////////////////
+    
     ctx.fillStyle = "black";
     ctx.globalAlpha = 1.0;
 
@@ -495,6 +686,9 @@ function showMenu() {
     if (Tuk) {
         ctx.fillText("Açık", 120, 230);
     }
+
+
+
 
     ctx.drawImage(BoxMus2, 62, 245, 50, 50);
     BoxMus2.path = new Path2D();
@@ -532,10 +726,24 @@ function showMenu() {
 
 
     // Speech
+
+    
   
     ctx.drawImage(menuHead, 410, 130, 250, 50);
 
+    ///////////////////////////////////////////////
+    if (KeyboardMenu) {
+    if (KeyMenu3) {
+ctx.globalAlpha = 0.3;
+ctx.fillStyle = "Blue";
+ctx.fillRect(410, 190, 257, 50);
+ctx.globalAlpha = 1.0;
+    }
+}
+///////////////////////////////////////////////
+
     ctx.fillStyle = "white";
+    
 
     ctx.font = "900 25px Arial"; 
 
@@ -566,9 +774,23 @@ function showMenu() {
     ctx.fillStyle = "black";
     ctx.font = "700 27px Arial";
 
+    
+
     ctx.drawImage(BoxSp1, 410, 190, 50, 50);
     BoxSp1.path = new Path2D();
     BoxSp1.path.rect(410, 190, 50, 50);
+
+     ///////////////////////////////////////////////
+     if (KeyboardMenu) {
+     if (KeyMenu4) {
+ctx.globalAlpha = 0.3;
+ctx.fillStyle = "Blue";
+ctx.fillRect(410, 245, 257, 50);
+ctx.globalAlpha = 1.0;
+ctx.fillStyle = "black";
+     }
+    }
+///////////////////////////////////////////////
 
     if (speechOn) {  
         ctx.drawImage(rTick1, 417, 192, 50, 40);
@@ -635,6 +857,18 @@ function showMenu() {
 
       ctx.drawImage(menuHead, 62, 320, 250, 50);
 
+           ///////////////////////////////////////////////
+           if (KeyboardMenu) {
+           if (KeyMenu5) {
+ctx.globalAlpha = 0.3;
+ctx.fillStyle = "Blue";
+ctx.fillRect(62, 378, 257, 50);
+ctx.globalAlpha = 1.0;
+ctx.fillStyle = "white";
+           }
+        }
+///////////////////////////////////////////////
+
       ctx.font = "900 25px Arial"; 
     
     if (En) {
@@ -668,6 +902,18 @@ function showMenu() {
     BoxEn.path = new Path2D();
     BoxEn.path.rect(62, 378, 50, 50);
 
+         ///////////////////////////////////////////////
+         if (KeyboardMenu) {
+         if (KeyMenu6) {
+ctx.globalAlpha = 0.3;
+ctx.fillStyle = "Blue";
+ctx.fillRect(62, 430, 257, 50);
+ctx.globalAlpha = 1.0;
+ctx.fillStyle = "black";
+         }
+        }
+///////////////////////////////////////////////
+
     if (En) {
         ctx.drawImage(rTick1, 67, 379, 50, 40);
     }
@@ -694,6 +940,18 @@ function showMenu() {
     ctx.drawImage(BoxGer, 62, 430, 50, 50);
     BoxGer.path = new Path2D();
     BoxGer.path.rect(62, 430, 50, 50);
+
+             ///////////////////////////////////////////////
+             if (KeyboardMenu) {
+             if (KeyMenu7) {
+ctx.globalAlpha = 0.3;
+ctx.fillStyle = "Blue";
+ctx.fillRect(62, 482, 257, 50);
+ctx.globalAlpha = 1.0;
+ctx.fillStyle = "black";
+             }
+            }
+///////////////////////////////////////////////
 
     if (Ger) {
         ctx.drawImage(rTick1, 67, 431, 50, 40);
@@ -723,6 +981,18 @@ function showMenu() {
     BoxRom.path = new Path2D();
     BoxRom.path.rect(62, 482, 50, 50);
 
+///////////////////////////////////////////////
+if (KeyboardMenu) {
+if (KeyMenu8) {
+ctx.globalAlpha = 0.3;
+ctx.fillStyle = "Blue";
+ctx.fillRect(62, 534, 257, 50);
+ctx.globalAlpha = 1.0;
+ctx.fillStyle = "black";
+}
+}
+///////////////////////////////////////////////
+
     if (Rom) {
         ctx.drawImage(rTick1, 67, 483, 50, 40);
     }
@@ -750,6 +1020,18 @@ function showMenu() {
     ctx.drawImage(BoxBul, 62, 534, 50, 50);
     BoxBul.path = new Path2D();
     BoxBul.path.rect(62, 534, 50, 50);
+
+                 ///////////////////////////////////////////////
+                 if (KeyboardMenu) {
+                 if (KeyMenu9) {
+ctx.globalAlpha = 0.3;
+ctx.fillStyle = "Blue";
+ctx.fillRect(62, 586, 257, 50);
+ctx.globalAlpha = 1.0;
+ctx.fillStyle = "black";
+                 }
+                }
+///////////////////////////////////////////////
 
     if (Bul) {
         ctx.drawImage(rTick1, 67, 535, 50, 40);
@@ -780,6 +1062,18 @@ function showMenu() {
     BoxGrk.path = new Path2D();
     BoxGrk.path.rect(62, 586, 50, 50);
 
+                 ///////////////////////////////////////////////
+                 if (KeyboardMenu) {
+                 if (KeyMenu10) {
+ctx.globalAlpha = 0.3;
+ctx.fillStyle = "Blue";
+ctx.fillRect(62, 638, 257, 50);
+ctx.globalAlpha = 1.0;
+ctx.fillStyle = "black";
+                 }
+                }
+///////////////////////////////////////////////
+
     if (Grk) {
         ctx.drawImage(rTick1, 67, 587, 50, 40);
     }
@@ -808,6 +1102,8 @@ function showMenu() {
     ctx.drawImage(BoxTur, 62, 638, 50, 50);
     BoxTur.path = new Path2D();
     BoxTur.path.rect(62, 638, 50, 50);
+
+
 
     if (Tuk) {
         ctx.drawImage(rTick1, 67, 639, 50, 40);
@@ -849,6 +1145,17 @@ function showMenu() {
   
     ctx.drawImage(menuHead, 410, 320, 250, 50);
 
+                     ///////////////////////////////////////////////
+                     if (KeyboardMenu) {
+                     if (KeyMenu11) {
+ctx.globalAlpha = 0.3;
+ctx.fillStyle = "Blue";
+ctx.fillRect(410, 378, 257, 50);
+ctx.globalAlpha = 1.0;
+                     }
+                    }
+///////////////////////////////////////////////
+
     ctx.fillStyle = "white";
 
     ctx.font = "900 25px Arial"; 
@@ -883,6 +1190,18 @@ function showMenu() {
     ctx.drawImage(BoxEff1, 410, 378, 50, 50);
     BoxEff1.path = new Path2D();
     BoxEff1.path.rect(410, 378, 50, 50);
+
+///////////////////////////////////////////////
+if (KeyboardMenu) {
+if (KeyMenu12) {
+ctx.globalAlpha = 0.3;
+ctx.fillStyle = "Blue";
+ctx.fillRect(410, 433, 257, 50);
+ctx.globalAlpha = 1.0;
+ctx.fillStyle = "black";
+}
+}
+///////////////////////////////////////////////
 
     if (effectsOn) {  
         ctx.drawImage(rTick1, 416, 379, 50, 40);
@@ -953,6 +1272,24 @@ function showMenu() {
 
     canvas.addEventListener("click", endMenu);
 
+    ////////////////////////////////////////////////////////////// 13/12/22
+
+
+
+
+
+    if (MSw1) {
+        addEventListener("keydown", switchKeysM1);
+        }
+    
+        if (MSw2) {
+        addEventListener("keydown", switchKeysM2);
+        }
+        
+        
+        /////////////////////////////////////////////////////
+
+    } //settingsKeyIns = false
   
   } // setMenu = true
 } // end of showMenu
@@ -983,18 +1320,30 @@ function settingsOpen(e) {
         }
     }
 
+    function settingsOpenKey(e) {
+        if (keys[83]) {
+            KeyboardMenu = true;
+            settingsKeyIns = true;
+            KeyMenu1 = true;
+            setMenu = true;
+            removeEventListener("keydown", settingsOpenKey);
+            }
+        }
+
 function Splash() {
     ctx.drawImage(settings, 600, 0, 80, 80);
     settings.path = new Path2D();
     settings.path.rect(600, 0, 100, 100);
 
     ctx.textAlign = "center";
-    ctx.font='400 17px Arial';
+    ctx.font='400 13px Arial';
     ctx.fillStyle = "white";
 
     
     if (En) {
-        ctx.fillText("Settings", 640, 85);
+        ctx.fillText("Settings", 640, 80);
+        ctx.fillText("Click Here", 640, 95);
+        ctx.fillText("Or press S", 640, 110);
     }
     if (Ger) {
         ctx.fillText("Einstellungen", 640, 85);
@@ -1020,13 +1369,13 @@ function Splash() {
     
 
     if (En) {
-        ctx.fillText("Bowling", w, 245);
+        ctx.fillText("Bowling", w, 250);
     }
     if (Ger) {
-        ctx.fillText("Bowling", w, 245);
+        ctx.fillText("Bowling", w, 250);
     }
     if (Rom) {
-        ctx.fillText("Bowling", w, 245);
+        ctx.fillText("Bowling", w, 250);
     }
     if (Bul) {
         ctx.font='500 140px Comic Sans MS';
@@ -1034,10 +1383,10 @@ function Splash() {
     }
     if (Grk) {
         ctx.font='500 120px Comic Sans MS';
-        ctx.fillText("Μπόουλινγκ", w, 235);
+        ctx.fillText("Μπόουλινγκ", w, 250);
     }
     if (Tuk) {
-        ctx.fillText("Bowling", w, 245);
+        ctx.fillText("Bowling", w, 250);
     }
 
 
@@ -1046,22 +1395,22 @@ function Splash() {
 
     
     if (En) {
-        ctx.fillText("Game", w, 325);
+        ctx.fillText("Game", w, 330);
     }
     if (Ger) {
-        ctx.fillText("Spiel", w, 325);
+        ctx.fillText("Spiel", w, 330);
     }
     if (Rom) {
-        ctx.fillText("Joc", w, 325);
+        ctx.fillText("Joc", w, 330);
     }
     if (Bul) {
-        ctx.fillText("Игра", w, 325);
+        ctx.fillText("Игра", w, 330);
     }
     if (Grk) {
-        ctx.fillText("Παιχνίδι", w, 325);
+        ctx.fillText("Παιχνίδι", w, 330);
     }
     if (Tuk) {
-        ctx.fillText("oyun", w, 325);
+        ctx.fillText("oyun", w, 330);
     }
 
     ctx.fillRect(0, 450, 715, 235); 
@@ -1103,7 +1452,8 @@ function Splash() {
 
 
 
-    addEventListener("keydown", SplashEndKey, false);
+    addEventListener("keydown", SplashEndKey);
+    addEventListener("keydown", settingsOpenKey);
     canvas.addEventListener("click", settingsOpen);
     canvas.addEventListener("click", SplashEnd);
 }
