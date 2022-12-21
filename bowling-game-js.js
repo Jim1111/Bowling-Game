@@ -579,7 +579,7 @@ function showMenu() {
           ctx.fillText("Instructions", w, 200);
           ctx.font = "900 30px Arial"; 
           ctx.fillStyle = "white";
-          ctx.fillText("Press the Spacear to tab", w, 280);
+          ctx.fillText("Press the Spacebar to tab", w, 280);
           ctx.fillText("between the options", w, 320);
           ctx.fillText("Then press the", w, 400);
           ctx.fillText("enter key to select", w, 440);
