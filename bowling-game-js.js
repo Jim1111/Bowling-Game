@@ -436,15 +436,15 @@ function endMenu(e) {
 
 
 if (setMenu) {
-    if (keys[13] && KeyMenu1) {
+    if (keys[13] && KeyMenu1 && MSw1) {
         musicOn=true;
     }
 
-    if (keys[13] && KeyMenu2) {
+    if (keys[13] && KeyMenu2 && MSw2) {
         musicOn=false;
     }
 
-    /*
+    
     if (keys[13] && KeyMenu3 && MSw3) {
         colod = true;
         white = false;
@@ -469,6 +469,7 @@ if (setMenu) {
         togQs3 = false;
     }
 
+
     if (keys[13] && KeyMenu8 && MSw8) {
         togQs2 = true;
         togQs1 = false;
@@ -480,25 +481,38 @@ if (setMenu) {
         togQs1 = false;
         togQs2 = false;
     }
-    */
+
+    if (keys[13] && KeyMenu10 && MSw10) {
+        togQs3 = true;
+        togQs1 = false;
+        togQs2 = false;
+    }
+
+    if (keys[13] && KeyMenu11 && MSw11) {
+        togQs3 = true;
+        togQs1 = false;
+        togQs2 = false;
+    }
+
+    if (keys[13] && KeyMenu12 && MSw12) {
+        togQs3 = true;
+        togQs1 = false;
+        togQs2 = false;
+    }
+
 }
 
 
 function switchKeysM1(e) {
     if (KeyboardMenu) {
     if ((keys[32]) && KeyMenu1 && MSw1) {
+
         KeyMenu1 = false;
         KeyMenu2 = true;
-        KeyMenu3 = false;
-        KeyMenu4 = false;
-        KeyMenu5 = false;
-        KeyMenu6 = false;
+
         MSw1 = false;
         MSw2 = true;
-        MSw3 = false;
-        MSw4 = false;
-        MSw5 = false;
-        MSw6 = false;
+
         removeEventListener("keydown", switchKeysM1, false);
     }
     }
@@ -507,22 +521,170 @@ function switchKeysM1(e) {
 function switchKeysM2(e) {
     if (KeyboardMenu) {
     if ((keys[32]) && KeyMenu2 && MSw2) {
-    KeyMenu1 = false;
+
     KeyMenu2 = false;
     KeyMenu3 = true;
-    KeyMenu4 = false;
-    KeyMenu5 = false;
-    KeyMenu6 = false;
-    MSw1 = false;
+
     MSw2 = false;
     MSw3 = true;
-    MSw4 = false;
-    MSw5 = false; 
-    MSw6 = false; 
+
+    
     removeEventListener("keydown", switchKeysM2, false);
     }
     }
 }
+
+function switchKeysM3(e) {
+    if (KeyboardMenu) {
+    if ((keys[32]) && KeyMenu3 && MSw3) {
+
+        KeyMenu3 = false;
+        KeyMenu4 = true;
+
+        MSw3 = false;
+        MSw4 = true;
+
+        removeEventListener("keydown", switchKeysM3, false);
+    }
+    }
+}
+
+function switchKeysM4(e) {
+    if (KeyboardMenu) {
+    if ((keys[32]) && KeyMenu4 && MSw4) {
+
+        KeyMenu4 = false
+        KeyMenu5 = true;
+
+        MSw4 = false;
+        MSw5 = true;
+
+        removeEventListener("keydown", switchKeysM4, false);
+    }
+    }
+}
+
+function switchKeysM5(e) {
+    if (KeyboardMenu) {
+    if ((keys[32]) && KeyMenu5 && MSw5) {
+        
+        KeyMenu5 = false;
+        KeyMenu6 = true;
+
+        MSw5 = false;
+        MSw6 = true;
+  
+        removeEventListener("keydown", switchKeysM5, false);
+    }
+    }
+}
+
+function switchKeysM6(e) {
+    if (KeyboardMenu) {
+    if ((keys[32]) && KeyMenu6 && MSw6) {
+
+        KeyMenu6 = false;
+        KeyMenu7 = true;
+
+        MSw6 = false;    
+        MSw7 = true;
+
+        removeEventListener("keydown", switchKeysM6, false);
+    }
+    }
+}
+
+function switchKeysM7(e) {
+    if (KeyboardMenu) {
+    if ((keys[32]) && KeyMenu7 && MSw7) {
+
+        KeyMenu7 = false;
+        KeyMenu8 = true;
+        
+        MSw7 = false;
+        MSw8 = true;
+
+        removeEventListener("keydown", switchKeysM7, false);
+    }
+    }
+}
+
+function switchKeysM8(e) {
+    if (KeyboardMenu) {
+    if ((keys[32]) && KeyMenu8 && MSw8) {
+
+        KeyMenu8 = false;
+        KeyMenu9 = true;
+        
+        MSw8 = false;
+        MSw9 = true;
+
+        removeEventListener("keydown", switchKeysM8, false);
+    }
+    }
+}
+
+function switchKeysM9(e) {
+    if (KeyboardMenu) {
+    if ((keys[32]) && KeyMenu9 && MSw9) {
+
+        KeyMenu9 = false;
+        KeyMenu10 = true;
+        
+        MSw9 = false;
+        MSw10= true;
+       
+        removeEventListener("keydown", switchKeysM9, false);
+    }
+    }
+}
+
+function switchKeysM10(e) {
+    if (KeyboardMenu) {
+    if ((keys[32]) && KeyMenu10 && MSw10) {
+
+        KeyMenu10 = false;
+        KeyMenu11 = true;
+        
+        MSw10 = false;
+        MSw11 = true;
+
+        removeEventListener("keydown", switchKeysM10, false);
+    }
+    }
+}
+
+function switchKeysM11(e) {
+    if (KeyboardMenu) {
+    if ((keys[32]) && KeyMenu11 && MSw11) {
+
+        KeyMenu11 = false;
+        KeyMenu12 = true;
+       
+        MSw11 = false;
+        MSw12 = true;
+
+        removeEventListener("keydown", switchKeysM11, false);
+    }
+    }
+}
+
+function switchKeysM12(e) {
+    if (KeyboardMenu) {
+    if ((keys[32]) && KeyMenu12 && MSw12) {
+
+        KeyMenu12 = false;
+        KeyMenu1 = true;
+       
+        MSw12 = false;
+        MSw1 = true;
+
+        removeEventListener("keydown", switchKeysM12, false);
+    }
+    }
+}
+
+
 
 
 function endInsKey() {
@@ -1280,11 +1442,53 @@ ctx.fillStyle = "black";
 
     if (MSw1) {
         addEventListener("keydown", switchKeysM1);
-        }
+    }
     
-        if (MSw2) {
+    if (MSw2) {
         addEventListener("keydown", switchKeysM2);
-        }
+    }
+
+    if (MSw3) {
+        addEventListener("keydown", switchKeysM3);
+    }
+
+    if (MSw4) {
+        addEventListener("keydown", switchKeysM4);
+    }
+
+    
+    if (MSw5) {
+        addEventListener("keydown", switchKeysM5);
+    }
+
+    if (MSw6) {
+        addEventListener("keydown", switchKeysM6);
+    }
+
+    if (MSw7) {
+        addEventListener("keydown", switchKeysM7);
+    }
+
+    
+    if (MSw8) {
+        addEventListener("keydown", switchKeysM8);
+    }
+
+    if (MSw9) {
+        addEventListener("keydown", switchKeysM9);
+    }
+
+    if (MSw10) {
+        addEventListener("keydown", switchKeysM10);
+    }
+
+    if (MSw11) {
+        addEventListener("keydown", switchKeysM11);
+    }
+
+    if (MSw12) {
+        addEventListener("keydown", switchKeysM12);
+    }
         
         
         /////////////////////////////////////////////////////
