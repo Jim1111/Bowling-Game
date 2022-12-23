@@ -20,6 +20,20 @@ var KeyMenu10 = false;
 var KeyMenu11 = false;
 var KeyMenu12 = false;
 
+var MSw1 = true;                        //
+var MSw2 = false;                       //
+var MSw3 = false;                       //
+var MSw4 = false;                       //
+var MSw5 = false;                       //
+var MSw6 = false;                       //                                        
+var MSw7 = false;                       // 
+var MSw8 = false;                       //
+var MSw9 = false;  
+var MSw10 = false; 
+var MSw11 = false; 
+var MSw12 = false; 
+var MSw13 = false; 
+
 // center text
 var w = canvas.width / 2;
 
@@ -65,19 +79,7 @@ var pinLeft = true;
 var pinRight = true;
 var strikeTar = false;
 
-var MSw1 = true;                        //
-var MSw2 = false;                       //
-var MSw3 = false;                       //
-var MSw4 = false;                       //
-var MSw5 = false;                       //
-var MSw6 = false;                       //                                        
-var MSw7 = false;                       // 
-var MSw8 = false;                       //
-var MSw9 = false;  
-var MSw10 = false; 
-var MSw11 = false; 
-var MSw12 = false; 
-var MSw13 = false; 
+
 
 
 
@@ -435,72 +437,7 @@ function endMenu(e) {
 
 
 
-if (setMenu) {
-    if (keys[13] && KeyMenu1 && MSw1) {
-        musicOn=true;
-    }
 
-    if (keys[13] && KeyMenu2 && MSw2) {
-        musicOn=false;
-    }
-
-    
-    if (keys[13] && KeyMenu3 && MSw3) {
-        colod = true;
-        white = false;
-    }
-
-    if (keys[13] && KeyMenu4 && MSw4) {
-        colod = false;
-        white = true;
-    }
-
-    if (keys[13] && KeyMenu5 && MSw5) {
-        togSpeech=true;
-    }
-
-    if (keys[13] && KeyMenu6 && MSw6) {
-        togSpeech=false;
-    }
-
-    if (keys[13] && KeyMenu7 && MSw7) {
-        togQs1 = true;
-        togQs2 = false;
-        togQs3 = false;
-    }
-
-
-    if (keys[13] && KeyMenu8 && MSw8) {
-        togQs2 = true;
-        togQs1 = false;
-        togQs3 = false;
-    }
-
-    if (keys[13] && KeyMenu9 && MSw9) {
-        togQs3 = true;
-        togQs1 = false;
-        togQs2 = false;
-    }
-
-    if (keys[13] && KeyMenu10 && MSw10) {
-        togQs3 = true;
-        togQs1 = false;
-        togQs2 = false;
-    }
-
-    if (keys[13] && KeyMenu11 && MSw11) {
-        togQs3 = true;
-        togQs1 = false;
-        togQs2 = false;
-    }
-
-    if (keys[13] && KeyMenu12 && MSw12) {
-        togQs3 = true;
-        togQs1 = false;
-        togQs2 = false;
-    }
-
-}
 
 
 function switchKeysM1(e) {
@@ -1425,7 +1362,18 @@ ctx.fillStyle = "black";
     
 
 
-    ctx.textAlign = "center"; 
+    ctx.textAlign = "center";
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+if (!KeyboardMenu) {
 
     ctx.drawImage(cross, w-30, 675, 50, 50);
 
@@ -1433,6 +1381,25 @@ ctx.fillStyle = "black";
     cross.path.rect(w-30, 675, 50, 50);
 
     canvas.addEventListener("click", endMenu);
+
+}
+
+if (KeyboardMenu) {
+
+    ctx.font = "900 20px Arial";
+    ctx.fillStyle = "Red";
+    ctx.fillText("Press the C button on the Keyboard to close this menu", w, 715);
+
+    if (keys[67]) {
+        setMenu = false;
+    }
+
+}
+
+
+
+
+
 
     ////////////////////////////////////////////////////////////// 13/12/22
 
@@ -1488,6 +1455,89 @@ ctx.fillStyle = "black";
 
     if (MSw12) {
         addEventListener("keydown", switchKeysM12);
+    }
+
+    if (setMenu) {
+        if (keys[13] && KeyMenu1 && MSw1) {
+            musicOn=false;
+        }
+    
+        if (keys[13] && KeyMenu2 && MSw2) {
+            musicOn=false;
+        }
+    
+        
+        if (keys[13] && KeyMenu3 && MSw3) {
+            speechOn = true;
+        }
+    
+        if (keys[13] && KeyMenu4 && MSw4) {
+            speechOn = false;
+        }
+    
+        if (keys[13] && KeyMenu5 && MSw5) {
+            En=true;
+            Ger=false;
+            Rom=false;
+            Bul=false;
+            Grk=false;
+            Tuk=false;
+        }
+    
+        if (keys[13] && KeyMenu6 && MSw6) {
+            En=false;
+            Ger=true;
+            Rom=false;
+            Bul=false;
+            Grk=false;
+            Tuk=false;
+        }
+    
+        if (keys[13] && KeyMenu7 && MSw7) {
+            En=false;
+            Ger=false;
+            Rom=true;
+            Bul=false;
+            Grk=false;
+            Tuk=false;
+        }
+    
+    
+        if (keys[13] && KeyMenu8 && MSw8) {
+            En=false
+            Ger=false;
+            Rom=false;
+            Bul=true;
+            Grk=false;
+            Tuk=false;
+        }
+    
+        if (keys[13] && KeyMenu9 && MSw9) {
+            En=false;
+            Ger=false;
+            Rom=false;
+            Bul=false;
+            Grk=true;
+            Tuk=false;
+        }
+    
+        if (keys[13] && KeyMenu10 && MSw10) {
+            En=false;
+            Ger=false;
+            Rom=false;
+            Bul=false;
+            Grk=false;
+            Tuk=true
+        }
+    
+        if (keys[13] && KeyMenu11 && MSw11) {
+            effectsOn = true;
+        }
+    
+        if (keys[13] && KeyMenu12 && MSw12) {
+            effectsOn = false;
+        }
+    
     }
         
         
