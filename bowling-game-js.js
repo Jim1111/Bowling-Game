@@ -19,6 +19,7 @@ var KeyMenu9 = false;
 var KeyMenu10 = false;
 var KeyMenu11 = false;
 var KeyMenu12 = false;
+var KeyMenu13 = false;
 
 var MSw1 = true;                        //
 var MSw2 = false;                       //
@@ -32,7 +33,7 @@ var MSw9 = false;
 var MSw10 = false; 
 var MSw11 = false; 
 var MSw12 = false; 
-var MSw13 = false; 
+var MSw13 = false;
 
 // center text
 var w = canvas.width / 2;
@@ -611,17 +612,30 @@ function switchKeysM12(e) {
     if ((keys[32]) && KeyMenu12 && MSw12) {
 
         KeyMenu12 = false;
-        KeyMenu1 = true;
+        KeyMenu13 = true;
        
         MSw12 = false;
-        MSw1 = true;
+        MSw13 = true;
 
         removeEventListener("keydown", switchKeysM12, false);
     }
     }
 }
 
+function switchKeysM13(e) {
+    if (KeyboardMenu) {
+    if ((keys[32]) && KeyMenu13 && MSw13) {
 
+        KeyMenu13 = false;
+        KeyMenu1 = true;
+       
+        MSw13 = false;
+        MSw1 = true;
+
+        removeEventListener("keydown", switchKeysM13, false);
+    }
+    }
+}
 
 
 function endInsKey() {
@@ -670,7 +684,7 @@ function showMenu() {
       if (settingsKeyIns) {
           ctx.globalAlpha = 1.0;
           ctx.fillStyle = "purple";
-          ctx.fillRect(111, 140, 500, 450);
+          ctx.fillRect(90, 140, 535, 550);
           ctx.textAlign = "center"; 
 
           ctx.fillStyle = "black";
@@ -682,9 +696,13 @@ function showMenu() {
           ctx.fillText("between the options", w, 320);
           ctx.fillText("Then press the", w, 400);
           ctx.fillText("enter key to select", w, 440);
+
+          ctx.fillText("To play with a Switch -", w, 510);
+          ctx.fillText("You need two Switches to play", w, 550);
+
           ctx.fillStyle = "black";
-          ctx.fillText("Press the spacebar", w, 520);
-          ctx.fillText("to continue", w, 560);
+          ctx.fillText("Press the spacebar", w, 620);
+          ctx.fillText("to continue", w, 660);
 
     addEventListener("keydown", endInsKey);
 
@@ -1373,7 +1391,17 @@ ctx.fillStyle = "black";
 ///////////////////////////////////////////////////////////////////////////////////
 
 
-if (!KeyboardMenu) {
+///////////////////////////////////////////////
+if (KeyboardMenu) {
+    if (KeyMenu13) {
+    ctx.globalAlpha = 0.3;
+    ctx.fillStyle = "Blue";
+    ctx.fillRect(w-30, 675, 50, 50);
+    ctx.globalAlpha = 1.0;
+    ctx.fillStyle = "black";
+    }
+    }
+    ///////////////////////////////////////////////
 
     ctx.drawImage(cross, w-30, 675, 50, 50);
 
@@ -1382,19 +1410,8 @@ if (!KeyboardMenu) {
 
     canvas.addEventListener("click", endMenu);
 
-}
 
-if (KeyboardMenu) {
 
-    ctx.font = "900 20px Arial";
-    ctx.fillStyle = "Red";
-    ctx.fillText("Press the C button on the Keyboard to close this menu", w, 715);
-
-    if (keys[67]) {
-        setMenu = false;
-    }
-
-}
 
 
 
@@ -1455,6 +1472,10 @@ if (KeyboardMenu) {
 
     if (MSw12) {
         addEventListener("keydown", switchKeysM12);
+    }
+
+    if (MSw13) {
+        addEventListener("keydown", switchKeysM13);
     }
 
     if (setMenu) {
@@ -1537,6 +1558,10 @@ if (KeyboardMenu) {
         if (keys[13] && KeyMenu12 && MSw12) {
             effectsOn = false;
         }
+
+        if (keys[13] && KeyMenu13 && MSw13) {
+            setMenu = false;
+        }
     
     }
         
@@ -1575,7 +1600,7 @@ function settingsOpen(e) {
     }
 
     function settingsOpenKey(e) {
-        if (keys[83]) {
+        if (keys[13]) {
             KeyboardMenu = true;
             settingsKeyIns = true;
             KeyMenu1 = true;
@@ -1595,9 +1620,12 @@ function Splash() {
 
     
     if (En) {
+        ctx.font='900 13px Arial';
         ctx.fillText("Settings", 640, 80);
+        ctx.font='400 13px Arial';
         ctx.fillText("Click Here", 640, 95);
-        ctx.fillText("Or press S", 640, 110);
+        ctx.fillText("Or press the", 640, 110);
+        ctx.fillText("Enter Key", 640, 125);
     }
     if (Ger) {
         ctx.fillText("Einstellungen", 640, 85);
