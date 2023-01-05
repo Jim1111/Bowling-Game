@@ -164,6 +164,36 @@ settings.src = "images/settings.png";
 
 // End of Settings //
 
+function keySetOne() {
+KeyMenu1 = true;
+KeyMenu2 = false;
+KeyMenu3 = false;
+KeyMenu4 = false;
+KeyMenu5 = false;
+KeyMenu6 = false;
+KeyMenu7 = false;
+KeyMenu8 = false;
+KeyMenu9 = false;
+KeyMenu10 = false;
+KeyMenu11 = false;
+KeyMenu12 = false;
+KeyMenu13 = false;
+
+MSw1 = true;                        //
+MSw2 = false;                       //
+MSw3 = false;                       //
+MSw4 = false;                       //
+MSw5 = false;                       //
+MSw6 = false;                       //                                        
+MSw7 = false;                       // 
+MSw8 = false;                       //
+MSw9 = false;  
+MSw10 = false; 
+MSw11 = false; 
+MSw12 = false; 
+MSw13 = false;
+}
+
 
 // sound effects
 var ballAud = new Audio("audio/bowling-ball.mp3");
@@ -426,6 +456,7 @@ function endMenu(e) {
             setMenu=false;
             insSc=false;
             splashSc=true;
+            keySetOne();
 
             canvas.removeEventListener("click", endMenu);
         }
@@ -442,7 +473,7 @@ function endMenu(e) {
 
 
 function switchKeysM1(e) {
-    if (KeyboardMenu) {
+    if (setMenu && !gameSc) {
     if ((keys[32]) && KeyMenu1 && MSw1) {
 
         KeyMenu1 = false;
@@ -457,7 +488,7 @@ function switchKeysM1(e) {
 }
 
 function switchKeysM2(e) {
-    if (KeyboardMenu) {
+    if (setMenu && !gameSc) {
     if ((keys[32]) && KeyMenu2 && MSw2) {
 
     KeyMenu2 = false;
@@ -473,7 +504,7 @@ function switchKeysM2(e) {
 }
 
 function switchKeysM3(e) {
-    if (KeyboardMenu) {
+    if (setMenu && !gameSc) {
     if ((keys[32]) && KeyMenu3 && MSw3) {
 
         KeyMenu3 = false;
@@ -488,7 +519,7 @@ function switchKeysM3(e) {
 }
 
 function switchKeysM4(e) {
-    if (KeyboardMenu) {
+    if (setMenu && !gameSc) {
     if ((keys[32]) && KeyMenu4 && MSw4) {
 
         KeyMenu4 = false
@@ -503,7 +534,7 @@ function switchKeysM4(e) {
 }
 
 function switchKeysM5(e) {
-    if (KeyboardMenu) {
+    if (setMenu && !gameSc) {
     if ((keys[32]) && KeyMenu5 && MSw5) {
         
         KeyMenu5 = false;
@@ -518,7 +549,7 @@ function switchKeysM5(e) {
 }
 
 function switchKeysM6(e) {
-    if (KeyboardMenu) {
+    if (setMenu && !gameSc) {
     if ((keys[32]) && KeyMenu6 && MSw6) {
 
         KeyMenu6 = false;
@@ -533,7 +564,7 @@ function switchKeysM6(e) {
 }
 
 function switchKeysM7(e) {
-    if (KeyboardMenu) {
+    if (setMenu && !gameSc) {
     if ((keys[32]) && KeyMenu7 && MSw7) {
 
         KeyMenu7 = false;
@@ -548,7 +579,7 @@ function switchKeysM7(e) {
 }
 
 function switchKeysM8(e) {
-    if (KeyboardMenu) {
+    if (setMenu && !gameSc) {
     if ((keys[32]) && KeyMenu8 && MSw8) {
 
         KeyMenu8 = false;
@@ -563,7 +594,7 @@ function switchKeysM8(e) {
 }
 
 function switchKeysM9(e) {
-    if (KeyboardMenu) {
+    if (setMenu && !gameSc) {
     if ((keys[32]) && KeyMenu9 && MSw9) {
 
         KeyMenu9 = false;
@@ -578,7 +609,7 @@ function switchKeysM9(e) {
 }
 
 function switchKeysM10(e) {
-    if (KeyboardMenu) {
+    if (setMenu && !gameSc) {
     if ((keys[32]) && KeyMenu10 && MSw10) {
 
         KeyMenu10 = false;
@@ -593,7 +624,7 @@ function switchKeysM10(e) {
 }
 
 function switchKeysM11(e) {
-    if (KeyboardMenu) {
+    if (setMenu && !gameSc) {
     if ((keys[32]) && KeyMenu11 && MSw11) {
 
         KeyMenu11 = false;
@@ -608,7 +639,7 @@ function switchKeysM11(e) {
 }
 
 function switchKeysM12(e) {
-    if (KeyboardMenu) {
+    if (setMenu && !gameSc) {
     if ((keys[32]) && KeyMenu12 && MSw12) {
 
         KeyMenu12 = false;
@@ -623,7 +654,7 @@ function switchKeysM12(e) {
 }
 
 function switchKeysM13(e) {
-    if (KeyboardMenu) {
+    if (setMenu && !gameSc) {
     if ((keys[32]) && KeyMenu13 && MSw13) {
 
         KeyMenu13 = false;
@@ -632,6 +663,8 @@ function switchKeysM13(e) {
         MSw13 = false;
         MSw1 = true;
 
+        keySetOne();
+
         removeEventListener("keydown", switchKeysM13, false);
     }
     }
@@ -639,13 +672,195 @@ function switchKeysM13(e) {
 
 
 function endInsKey() {
-    if (keys[32]) {
-        settingsKeyIns = false;
-        removeEventListener("keydown", endInsKey);
+    if (setMenu && !gameSc) {
+        if (keys[32]) {
+            settingsKeyIns = false;
+            insSc=false;
+            splashSc=true;
+            removeEventListener("keydown", endInsKey);
+        }
     }
 }
 
 
+////// music change ///////////////////
+///////////////////////////////////////
+
+function MustickTKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu1 && MSw1) {
+            musicOn=true;
+            removeEventListener("click", MustickTKey);
+        }
+    } // setMenu
+}
+
+function MustickFKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu2 && MSw2) {
+            musicOn=false;
+            removeEventListener("click", MustickFKey);
+        }
+    } // setMenu
+}
+
+/////End of Mouse music Change///////////////////
+/////////////////////////////////////////////////
+
+////// speech change ///////////////////
+///////////////////////////////////////
+
+function SptickTKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu3 && MSw3) {
+            speechOn=true;
+            removeEventListener("click", SptickTKey);
+        }
+    } // setMenu
+}
+
+function SptickFKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu4 && MSw4) {
+            speechOn=false;
+            removeEventListener("click", SptickFKey);
+        }
+    } // setMenu
+}
+
+/////End of Mouse speech Change///////////////////
+/////////////////////////////////////////////////
+
+////// translate change ///////////////////
+///////////////////////////////////////
+
+function enOnKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu5 && MSw5) {
+            En=true;
+            Ger=false;
+            Rom=false;
+            Bul=false;
+            Grk=false;
+            Tuk=false;
+            removeEventListener("click", enOnKey);
+        }
+    }
+}
+
+function gerOnKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu6 && MSw6) {
+            En=false;
+            Ger=true;
+            Rom=false;
+            Bul=false;
+            Grk=false;
+            Tuk=false;
+            removeEventListener("click", gerOnKey);
+        }
+    }
+}
+
+function romOnKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu7 && MSw7) {
+            En=false;;
+            Ger=false;
+            Rom=true;
+            Bul=false;
+            Grk=false;
+            Tuk=false;
+            removeEventListener("click", romOnKey);
+        }
+    }
+}
+
+function bulOnKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu8 && MSw8) {
+            En=false;
+            Ger=false;
+            Rom=false;
+            Bul=true;
+            Grk=false;
+            Tuk=false;
+            removeEventListener("click", bulOnKey);
+        }
+    }
+}
+
+function grkOnKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu9 && MSw9) {
+            En=false;
+            Ger=false;
+            Rom=false;
+            Bul=false;
+            Grk=true;
+            Tuk=false;
+            removeEventListener("click", grkOnKey);
+        }
+    }
+}
+
+function turOnKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu10 && MSw10) {
+            En=false;
+            Ger=false;
+            Rom=false;
+            Bul=false;
+            Grk=false;
+            Tuk=true;
+            removeEventListener("click", turOnKey);
+        }
+    }
+}
+
+/////End of translate speech Change///////////////////
+/////////////////////////////////////////////////
+
+////// effects change ///////////////////
+///////////////////////////////////////
+
+function effectsTKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu11 && MSw11) {
+            effectsOn=true;
+            removeEventListener("click", effectsTKey);
+        }
+    } // setMenu
+}
+
+function effectsFKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu12 && MSw12) {
+            effectsOn=false;
+            removeEventListener("click", effectsFKey);
+        }
+    } // setMenu
+}
+
+/////End of Mouse effects Change///////////////////
+/////////////////////////////////////////////////
+
+
+// End Mouse Menu and return to game //
+function endMenuKey(e) {
+    if (setMenu && !gameSc) {
+        if (keys[13] && setMenu && KeyMenu13 && MSw13) {
+
+            setMenu=false;
+            insSc=false;
+            splashSc=true;
+
+            removeEventListener("click", endMenuKey);
+        }
+    }
+}
+
+/////////////////////////// 5/1/23 ///////////////////////////////////////
 
 
 
@@ -839,6 +1054,9 @@ function showMenu() {
 
     canvas.addEventListener("click", MustickT);
     canvas.addEventListener("click", MustickF);
+
+    addEventListener("keydown", MustickTKey);
+    addEventListener("keydown", MustickFKey);
     // End of Music
 
 
@@ -965,6 +1183,9 @@ ctx.fillStyle = "black";
 
     canvas.addEventListener("click", SptickT);
     canvas.addEventListener("click", SptickF);
+
+    addEventListener("keydown", SptickTKey);
+    addEventListener("keydown", SptickFKey);
 
     // End of Speech
 
@@ -1253,7 +1474,15 @@ ctx.fillStyle = "black";
     canvas.addEventListener("click", bulOn);
     canvas.addEventListener("click", grkOn);
     canvas.addEventListener("click", turOn);
-    
+
+    if (KeyboardMenu && !gameSc) {
+    addEventListener("keydown", enOnKey);
+    addEventListener("keydown", gerOnKey);
+    addEventListener("keydown", romOnKey);
+    addEventListener("keydown", bulOnKey);
+    addEventListener("keydown", grkOnKey);
+    addEventListener("keydown", turOnKey);
+    }
 
     
     // End of Translations
@@ -1375,6 +1604,9 @@ ctx.fillStyle = "black";
     canvas.addEventListener("click", effectsT);
     canvas.addEventListener("click", effectsF);
 
+    addEventListener("keydown", effectsTKey);
+    addEventListener("keydown", effectsFKey);
+
     // End of Effects
 
     
@@ -1409,7 +1641,7 @@ if (KeyboardMenu) {
     cross.path.rect(w-30, 675, 50, 50);
 
     canvas.addEventListener("click", endMenu);
-
+    addEventListener("keydown", endMenuKey);
 
 
 
@@ -1424,145 +1656,58 @@ if (KeyboardMenu) {
 
 
 
-    if (MSw1) {
+    if (MSw1 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM1);
     }
     
-    if (MSw2) {
+    if (MSw2 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM2);
     }
 
-    if (MSw3) {
+    if (MSw3 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM3);
     }
 
-    if (MSw4) {
+    if (MSw4 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM4);
     }
 
     
-    if (MSw5) {
+    if (MSw5 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM5);
     }
 
-    if (MSw6) {
+    if (MSw6 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM6);
     }
 
-    if (MSw7) {
+    if (MSw7 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM7);
     }
 
     
-    if (MSw8) {
+    if (MSw8 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM8);
     }
 
-    if (MSw9) {
+    if (MSw9 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM9);
     }
 
-    if (MSw10) {
+    if (MSw10 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM10);
     }
 
-    if (MSw11) {
+    if (MSw11 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM11);
     }
 
-    if (MSw12) {
+    if (MSw12 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM12);
     }
 
-    if (MSw13) {
+    if (MSw13 && KeyboardMenu && setMenu) {
         addEventListener("keydown", switchKeysM13);
-    }
-
-    if (setMenu) {
-        if (keys[13] && KeyMenu1 && MSw1) {
-            musicOn=false;
-        }
-    
-        if (keys[13] && KeyMenu2 && MSw2) {
-            musicOn=false;
-        }
-    
-        
-        if (keys[13] && KeyMenu3 && MSw3) {
-            speechOn = true;
-        }
-    
-        if (keys[13] && KeyMenu4 && MSw4) {
-            speechOn = false;
-        }
-    
-        if (keys[13] && KeyMenu5 && MSw5) {
-            En=true;
-            Ger=false;
-            Rom=false;
-            Bul=false;
-            Grk=false;
-            Tuk=false;
-        }
-    
-        if (keys[13] && KeyMenu6 && MSw6) {
-            En=false;
-            Ger=true;
-            Rom=false;
-            Bul=false;
-            Grk=false;
-            Tuk=false;
-        }
-    
-        if (keys[13] && KeyMenu7 && MSw7) {
-            En=false;
-            Ger=false;
-            Rom=true;
-            Bul=false;
-            Grk=false;
-            Tuk=false;
-        }
-    
-    
-        if (keys[13] && KeyMenu8 && MSw8) {
-            En=false
-            Ger=false;
-            Rom=false;
-            Bul=true;
-            Grk=false;
-            Tuk=false;
-        }
-    
-        if (keys[13] && KeyMenu9 && MSw9) {
-            En=false;
-            Ger=false;
-            Rom=false;
-            Bul=false;
-            Grk=true;
-            Tuk=false;
-        }
-    
-        if (keys[13] && KeyMenu10 && MSw10) {
-            En=false;
-            Ger=false;
-            Rom=false;
-            Bul=false;
-            Grk=false;
-            Tuk=true
-        }
-    
-        if (keys[13] && KeyMenu11 && MSw11) {
-            effectsOn = true;
-        }
-    
-        if (keys[13] && KeyMenu12 && MSw12) {
-            effectsOn = false;
-        }
-
-        if (keys[13] && KeyMenu13 && MSw13) {
-            setMenu = false;
-        }
-    
     }
         
         
@@ -1939,7 +2084,7 @@ function SetBallKey() {
         }
         Rolling = true;
         removeEventListener("keydown", SetBallKey);
-     }
+    }
 }
 /////////////////////////////////
 
@@ -2151,6 +2296,8 @@ function setBall() {
             score10 = true;
             score13 = true;
             score17 = true;
+
+            setMenu = false;
             removeEventListener("keydown", EndKey);
         }
      } 
